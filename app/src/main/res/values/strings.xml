@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Revalorando</string>
+    <string name="nick_usuario">Ingrese el nombre de usuario</string>
+    <string name="password_usuario">Ingrese la contraseña</string>
+    <string name="password2_usuario">Confirme la contraseña</string>
+    <string name="nombre_usuario">Ingrese el nombre</string>
+    <string name="apellido_usuario">Ingrese el apellido</string>
+    <string name="email_usuario">Ingrese el email</string>
+    <string name="telefono_usuario">Ingrese el telefono</string>
+    <string name="direccion_usuario">Ingrese dirección</string>
+    <string name="numero_usuario">Ingrese el número de puerta</string>
+    <string name="localidad_usuario">Ingrese la localidad</string>
+    <string name="departamento_usuario">Ingrese el departamento</string>
+
+    <string name="add_usuario">Registrar nuevo usuario</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="no_registrado">No se pudo registrar el usuario</string>
+
+
+
+</resources>
