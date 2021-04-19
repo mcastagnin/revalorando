@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         usuarioViewModel = new ViewModelProvider(this, new UsuarioFactory(getApplication())).get(UsuarioViewModel.class);
 
         usuarioViewModel.getUsuarios().observe(this, usuarios -> {
+
             adapter.submitList(usuarios);
         });
 
