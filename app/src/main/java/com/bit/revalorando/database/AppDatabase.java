@@ -12,7 +12,7 @@ import com.bit.revalorando.entities.Usuario;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Usuario.class}, version = 8)
+@Database(entities = {Usuario.class}, version = 9)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UsuarioDao usuarioDao();
 

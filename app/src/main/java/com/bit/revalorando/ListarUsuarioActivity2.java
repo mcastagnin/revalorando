@@ -3,6 +3,9 @@ package com.bit.revalorando;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.appbar.MaterialToolbar;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,7 +27,7 @@ import com.bit.revalorando.entities.Usuario;
 import com.bit.revalorando.models.UsuarioViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ListarUsuarioActivity2 extends AppCompatActivity {
+public class ListarUsuarioActivity2 extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private UsuarioViewModel usuarioViewModel;
     public static final int NEW_USUARIO_REQ_CODE = 1;
@@ -54,6 +56,18 @@ public class ListarUsuarioActivity2 extends AppCompatActivity {
             startActivityForResult(intent, NEW_USUARIO_REQ_CODE);
         });
 
+        MaterialToolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setSubtitle(R.string.app_subtitle);
+
+        DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.navigation_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -79,15 +93,23 @@ public class ListarUsuarioActivity2 extends AppCompatActivity {
         }
     }
 
-    MaterialToolbar toolbar = findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
-    getSupportActionBar().setSubtitle(R.string.app_subtitle);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            MainActivity.super.onBackPressed();
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_favoritos:
+                Toast.makeText(getApplicationContext(), R.string.menu_favoritos, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_perfil:
+                Toast.makeText(getApplicationContext(), R.string.menu_perfil, Toast.LENGTH_LONG).show();
+                break;
+            case R.id.nav_send:
+                Toast.makeText(getApplicationContext(), R.string.menu_send, Toast.LENGTH_LONG).show();
+                break;
+            default:
+                throw new IllegalArgumentException("Opcion no existente");
         }
-    });
+
+        return true;
+    }
 
 }
