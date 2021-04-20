@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Revalorando">
-        <activity android:name=".AgregarUsuarioActivity"></activity>
+        <activity android:name=".ListarArticuloActivity"></activity>
+        <activity android:name=".ListarUsuarioActivity2" />
+        <activity android:name=".AgregarUsuarioActivity" />
+        <activity android:name=".ListarUsuarioActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

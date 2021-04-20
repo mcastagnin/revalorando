@@ -1,33 +1,32 @@
 package com.bit.revalorando;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.bit.revalorando.entities.Usuario;
 import com.bit.revalorando.models.UsuarioViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MainActivity extends AppCompatActivity {
+public class ListarUsuarioActivity extends AppCompatActivity {
 
     private UsuarioViewModel usuarioViewModel;
-    public static final int NEW_LISTAR_USUARIO_REQ_CODE = 1;
     public static final int NEW_USUARIO_REQ_CODE = 1;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewUsuarios);
         final UsuarioListAdapter adapter = new UsuarioListAdapter(new UsuarioListAdapter.UsuarioDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         usuarioViewModel = new ViewModelProvider(this, new UsuarioFactory(getApplication())).get(UsuarioViewModel.class);
 
@@ -36,19 +35,13 @@ public class MainActivity extends AppCompatActivity {
             adapter.submitList(usuarios);
         });
 
-        final Button btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, ListarUsuarioActivity2.class);
-
-            startActivityForResult(intent, NEW_LISTAR_USUARIO_REQ_CODE);
-        });
-
-        final Button btnRegistro = findViewById(R.id.btnRegistro);
-        btnRegistro.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, AgregarUsuarioActivity.class);
+        FloatingActionButton fab = findViewById(R.id.btnAgregar);
+        fab.setOnClickListener( view -> {
+            Intent intent = new Intent(ListarUsuarioActivity.this, AgregarUsuarioActivity.class);
 
             startActivityForResult(intent, NEW_USUARIO_REQ_CODE);
         });
+
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
@@ -73,6 +66,5 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), R.string.no_registrado, Toast.LENGTH_LONG).show();
         }
     }
-
 
 }

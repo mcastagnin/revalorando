@@ -11,10 +11,28 @@
     <string name="numero_usuario">Ingrese el número de puerta</string>
     <string name="localidad_usuario">Ingrese la localidad</string>
     <string name="departamento_usuario">Ingrese el departamento</string>
-
     <string name="add_usuario">Registrar nuevo usuario</string>
     <string name="registrarse">Registrarse</string>
     <string name="no_registrado">No se pudo registrar el usuario</string>
+    <string name="login">Iniciar sesión</string>
+
+    <string name="app_subtitle">La mejor fruteria</string>
+    <string name="home">Volver</string>
+    <string name="about">Acerca de</string>
+    <string name="logout">Salir</string>
+    <string name="titulo_borrar">Borrar fruta</string>
+    <string name="msg_borrar">Desea borrar la fruta?</string>
+    <string name="titulo_acerca_de">Acerca de</string>
+    <string name="msg_acerca_de">Copyright BITteam</string>
+    <string name="si">SI</string>
+    <string name="ok">OK</string>
+    <string name="no">NO</string>
+    <string name="navigation_drawer_open">Ver</string>
+    <string name="navigation_drawer_close">Cerrar</string>
+    <string name="menu_perfil">Perfil</string>
+    <string name="menu_favoritos">Favoritos</string>
+    <string name="menu_send">Enviar</string>
+    <string name="menu_otros">Otros</string>
 
 
 
