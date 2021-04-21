@@ -80,7 +80,7 @@ public class ListarUsuarioActivity2 extends OptionsMenuActivity implements Navig
             usuario.setNombre(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_NOMBRE));
             usuario.setApellido(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_APELLIDO));
             usuario.setEmail(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_EMAIL));
-            usuario.setTelefono(data.getIntExtra(AgregarUsuarioActivity.EXTRA_MSG_TELEFONO,0));
+            usuario.setTelefono(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_TELEFONO));
             usuario.setDireccion(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_DIRECCION));
             usuario.setNumero(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_NUMERO));
             usuario.setLocalidad(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_LOCALIDAD));
@@ -96,14 +96,17 @@ public class ListarUsuarioActivity2 extends OptionsMenuActivity implements Navig
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.nav_favoritos:
-                Toast.makeText(getApplicationContext(), R.string.menu_favoritos, Toast.LENGTH_LONG).show();
+            case R.id.nav_trueque:
+                Toast.makeText(getApplicationContext(), R.string.menu_trueque, Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_perfil:
                 Toast.makeText(getApplicationContext(), R.string.menu_perfil, Toast.LENGTH_LONG).show();
                 break;
-            case R.id.nav_send:
-                Toast.makeText(getApplicationContext(), R.string.menu_send, Toast.LENGTH_LONG).show();
+            case R.id.nav_articulo:
+                Intent intent = new Intent(ListarUsuarioActivity2.this, ListarArticuloActivity.class);
+
+                startActivity(intent);
+                //Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();
                 break;
             default:
                 throw new IllegalArgumentException("Opcion no existente");

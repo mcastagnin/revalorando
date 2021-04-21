@@ -6,15 +6,19 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.bit.revalorando.daos.ArticuloDao;
 import com.bit.revalorando.daos.UsuarioDao;
+import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.entities.Usuario;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Usuario.class}, version = 9)
+@Database(entities = {Usuario.class, Articulo.class}, version = 13)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UsuarioDao usuarioDao();
+    public abstract ArticuloDao articuloDao();
+
 
     private static volatile AppDatabase instance;
 

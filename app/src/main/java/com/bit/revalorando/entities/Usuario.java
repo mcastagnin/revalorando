@@ -14,7 +14,7 @@ public class Usuario {
     private String nombre;
     private String apellido;
     private String email;
-    private int telefono;
+    private String telefono;
     private String direccion;
     private String numero;
     private String localidad;
@@ -69,11 +69,11 @@ public class Usuario {
         this.email = email;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -113,7 +113,7 @@ public class Usuario {
 
     }
 
-    public Usuario(int id, String usuario, String password, String nombre, String apellido, String email, int telefono, String direccion, String numero, String localidad, String departamento) {
+    public Usuario(int id, String usuario, String password, String nombre, String apellido, String email, String telefono, String direccion, String numero, String localidad, String departamento) {
         this.id = id;
         this.usuario = usuario;
         this.password = password;

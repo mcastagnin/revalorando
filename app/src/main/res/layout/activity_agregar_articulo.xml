@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
+
+
+    <EditText
+        android:id="@+id/textViewIngresarNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/nombre_articulo"
+        android:fontFamily="sans-serif"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/textViewIngresarDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/descripcion_articulo"
+        android:fontFamily="sans-serif"
+        android:textSize="18sp"/>
+
+    <EditText
+        android:id="@+id/textViewIngresarImagen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/imagen_articulo"
+        android:fontFamily="sans-serif"
+        android:textSize="18sp"/>
+
+    <Button
+        android:id="@+id/btnGuardar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/colorverde"
+        android:text="@string/guardar"/>
+</LinearLayout>

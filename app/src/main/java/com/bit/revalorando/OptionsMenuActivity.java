@@ -36,7 +36,7 @@ public class OptionsMenuActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_add:
                 Intent intent = new Intent(OptionsMenuActivity.this, AgregarUsuarioActivity.class);
-                startActivityForResult(intent, ListarUsuarioActivity.NEW_USUARIO_REQ_CODE);
+                startActivityForResult(intent, ListarUsuarioActivity2.NEW_USUARIO_REQ_CODE);
                 return true;
             case R.id.action_about:
                 acercaDe();

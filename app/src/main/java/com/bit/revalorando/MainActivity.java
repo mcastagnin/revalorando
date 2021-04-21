@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             usuario.setNombre(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_NOMBRE));
             usuario.setApellido(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_APELLIDO));
             usuario.setEmail(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_EMAIL));
-            usuario.setTelefono(data.getIntExtra(AgregarUsuarioActivity.EXTRA_MSG_TELEFONO,0));
+            usuario.setTelefono(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_TELEFONO));
             usuario.setDireccion(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_DIRECCION));
             usuario.setNumero(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_NUMERO));
             usuario.setLocalidad(data.getStringExtra(AgregarUsuarioActivity.EXTRA_MSG_LOCALIDAD));
