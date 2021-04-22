@@ -8,13 +8,27 @@
     <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
 
+    <TextView
+        android:id="@+id/etiquetaNuevoArticulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorverde"
+        android:text="NUEVO ARTÍCULO"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="18sp" />
+
+
     <EditText
         android:id="@+id/textViewIngresarNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/nombre_articulo"
         android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
+        android:hint="@string/nombre_articulo"
+        android:textSize="18sp"
+
+        />
 
     <EditText
         android:id="@+id/textViewIngresarDescripcion"

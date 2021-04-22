@@ -1,7 +1,7 @@
 package com.bit.revalorando;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.appbar.MaterialToolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -10,14 +10,7 @@ import com.google.android.material.navigation.NavigationView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,7 +20,7 @@ import com.bit.revalorando.entities.Usuario;
 import com.bit.revalorando.models.UsuarioViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ListarUsuarioActivity2 extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ListarUsuarioActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private UsuarioViewModel usuarioViewModel;
     public static final int NEW_USUARIO_REQ_CODE = 1;
@@ -51,7 +44,7 @@ public class ListarUsuarioActivity2 extends OptionsMenuActivity implements Navig
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
         fab.setOnClickListener( view -> {
-            Intent intent = new Intent(ListarUsuarioActivity2.this, AgregarUsuarioActivity.class);
+            Intent intent = new Intent(ListarUsuarioActivity.this, AgregarUsuarioActivity.class);
 
             startActivityForResult(intent, NEW_USUARIO_REQ_CODE);
         });
@@ -103,7 +96,7 @@ public class ListarUsuarioActivity2 extends OptionsMenuActivity implements Navig
                 Toast.makeText(getApplicationContext(), R.string.menu_perfil, Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_articulo:
-                Intent intent = new Intent(ListarUsuarioActivity2.this, ListarArticuloActivity.class);
+                Intent intent = new Intent(ListarUsuarioActivity.this, ListarArticuloActivity.class);
 
                 startActivity(intent);
                 //Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();

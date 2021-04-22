@@ -2,18 +2,14 @@ package com.bit.revalorando;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.bit.revalorando.entities.Usuario;
 import com.bit.revalorando.models.UsuarioViewModel;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -38,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, ListarUsuarioActivity2.class);
+            Intent intent = new Intent(MainActivity.this, ListarUsuarioActivity.class);
 
             startActivityForResult(intent, NEW_LISTAR_USUARIO_REQ_CODE);
         });

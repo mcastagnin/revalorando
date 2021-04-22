@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Revalorando">
-        <activity android:name=".AgregarArticuloActivity"></activity>
+        <activity android:name=".AgregarArticuloActivity"/>
         <activity android:name=".ListarArticuloActivity" />
-        <activity android:name=".ListarUsuarioActivity2" />
+        <activity android:name=".AgregarTruequeActivity"/>
+        <activity android:name=".ListarTruequeActivity" />
+        <activity android:name=".ListarUsuarioActivity" />
         <activity android:name=".AgregarUsuarioActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

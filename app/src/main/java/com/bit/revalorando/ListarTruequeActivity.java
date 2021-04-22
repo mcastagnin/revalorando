@@ -29,7 +29,7 @@ import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.models.ArticuloViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class ListarArticuloActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ListarTruequeActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ArticuloViewModel articuloViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
@@ -53,7 +53,7 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
         fab.setOnClickListener( view -> {
-            Intent intent = new Intent(ListarArticuloActivity.this, AgregarArticuloActivity.class);
+            Intent intent = new Intent(ListarTruequeActivity.this, AgregarArticuloActivity.class);
 
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
         });

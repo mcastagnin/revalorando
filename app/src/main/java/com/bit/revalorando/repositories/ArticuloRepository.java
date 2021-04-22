@@ -14,16 +14,23 @@ public class ArticuloRepository {
     private ArticuloDao articuloDao;
 
     private LiveData<List<Articulo>> articulos;
+    public LiveData<List<Articulo>>  truequesDisponibles;
 
     public ArticuloRepository(Application application){
         AppDatabase db = AppDatabase.getInstance(application);
         articuloDao = db.articuloDao();
         articulos = articuloDao.getAll();
+        truequesDisponibles = articuloDao.findTruequesDisponibles("");
+
 
     }
 
     public LiveData<List<Articulo>> getArticulos(){
         return articulos;
+    }
+
+    public LiveData<List<Articulo>> findTruequesDisponibles(String nombreArticulo) {
+        return truequesDisponibles;
     }
 
     public void insert(Articulo articulo){

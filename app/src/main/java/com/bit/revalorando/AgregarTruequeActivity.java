@@ -15,7 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AgregarArticuloActivity extends OptionsMenuActivity {
+public class AgregarTruequeActivity extends OptionsMenuActivity {
     public static final String EXTRA_MSG_ID = "com.bit.revalorando.MSG_GUARDAR_ID";
     public static final String EXTRA_MSG_NOMBRE = "com.bit.revalorando.MSG_GUARDAR_NOMBRE";
     public static final String EXTRA_MSG_DESCRIPCION = "com.bit.revalorando.MSG_GUARDAR_DESCRIPCION";
@@ -73,7 +73,7 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AgregarArticuloActivity.super.onBackPressed();
+                AgregarTruequeActivity.super.onBackPressed();
             }
         });
 
