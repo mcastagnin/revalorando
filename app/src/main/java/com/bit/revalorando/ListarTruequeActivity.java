@@ -12,6 +12,9 @@ import com.google.android.material.navigation.NavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Toast;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -34,18 +37,18 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
     private ArticuloTruequeViewModel articuloTruequeViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
+    private String nombreArticulo = "zap";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_trueque_articulo);
-
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
         final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        articuloTruequeViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(), "z")).get(ArticuloTruequeViewModel.class);
+        articuloTruequeViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(),nombreArticulo)).get(ArticuloTruequeViewModel.class);
 
         articuloTruequeViewModel.findTruequesDisponibles().observe(this, articulos -> {
 
@@ -58,6 +61,9 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
         });
+
+
+
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -72,6 +78,8 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+
+
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);

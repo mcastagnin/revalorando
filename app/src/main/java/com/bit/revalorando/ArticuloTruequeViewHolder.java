@@ -34,7 +34,7 @@ public class ArticuloTruequeViewHolder extends RecyclerView.ViewHolder {
 
 
     static ArticuloTruequeViewHolder create(ViewGroup parent){
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.articulo_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.trueque_item, parent, false);
         return new ArticuloTruequeViewHolder(view);
     }
 }

@@ -8,14 +8,16 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/card_view"
+        android:id="@+id/card_view_trueque"
         android:layout_margin="5dp"
-        app:cardBackgroundColor="#DDDDDD"
+        app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="12dp"
-        app:contentPadding="4dp">
+        app:contentPadding="4dp"
+        app:cardElevation="10dp"
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayoutItem"
+            android:id="@+id/constraintLayoutItemTrueque"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
