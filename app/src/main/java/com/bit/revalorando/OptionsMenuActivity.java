@@ -30,8 +30,6 @@ public class OptionsMenuActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.action_add:
-                Intent intent = new Intent(OptionsMenuActivity.this, AgregarUsuarioActivity.class);
-                startActivityForResult(intent, ListarUsuarioActivity.NEW_USUARIO_REQ_CODE);
                 return true;
             case R.id.action_about:
                 acercaDe();

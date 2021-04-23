@@ -93,12 +93,14 @@ public class ListarUsuarioActivity extends OptionsMenuActivity implements Naviga
                 Toast.makeText(getApplicationContext(), R.string.menu_trueque, Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_perfil:
-                Toast.makeText(getApplicationContext(), R.string.menu_perfil, Toast.LENGTH_LONG).show();
+                Intent intentP = new Intent(ListarUsuarioActivity.this, AgregarUsuarioActivity.class);
+
+                startActivity(intentP);
                 break;
             case R.id.nav_articulo:
-                Intent intent = new Intent(ListarUsuarioActivity.this, ListarArticuloActivity.class);
+                Intent intentLU = new Intent(ListarUsuarioActivity.this, ListarArticuloActivity.class);
 
-                startActivity(intent);
+                startActivity(intentLU);
                 //Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();
                 break;
             default:

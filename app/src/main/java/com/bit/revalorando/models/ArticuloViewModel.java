@@ -13,8 +13,9 @@ import java.util.List;
 public class ArticuloViewModel extends AndroidViewModel {
 
     private ArticuloRepository articuloRepository;
+
     private final LiveData<List<Articulo>> articulos;
-    //private final LiveData<List<Articulo>> listTrueques;
+    //private final List<Articulo> listTrueques;
 
 
     public ArticuloViewModel(Application application){
@@ -22,16 +23,13 @@ public class ArticuloViewModel extends AndroidViewModel {
         articuloRepository = new ArticuloRepository(application);
         articulos = articuloRepository.getArticulos();
 
-        //listTrueques = articuloRepository.findTruequesDisponibles("");
     }
 
     public LiveData<List<Articulo>> getArticulos(){
         return articulos;
     }
 
-    /*public LiveData<List<Articulo>>  findTruequesDisponibles(String nombreArticulo) {
-        return listTrueques;
-    }*/
+
 
 
     public void insert(Articulo articulo){

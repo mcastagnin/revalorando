@@ -10,21 +10,19 @@ import com.bit.revalorando.entities.Articulo;
 
 import java.util.List;
 
-public class ArticuloRepository {
+public class ArticuloTruequeRepository {
     private ArticuloDao articuloDao;
 
-    private LiveData<List<Articulo>> articulos;
+    public LiveData<List<Articulo>>  truequesDisponibles;
 
-    public ArticuloRepository(Application application){
+    public ArticuloTruequeRepository(Application application, String nombreArticulo){
         AppDatabase db = AppDatabase.getInstance(application);
         articuloDao = db.articuloDao();
-        articulos = articuloDao.getAll();
+        truequesDisponibles = articuloDao.findTruequesDisponibles(nombreArticulo);
 
     }
 
-    public LiveData<List<Articulo>> getArticulos(){
-        return articulos;
-    }
+    public LiveData<List<Articulo>> findTruequesDisponibles() { return truequesDisponibles; }
 
 
     public void insert(Articulo articulo){

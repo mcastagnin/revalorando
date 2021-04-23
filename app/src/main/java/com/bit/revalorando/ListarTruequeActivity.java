@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bit.revalorando.entities.Articulo;
+import com.bit.revalorando.models.ArticuloTruequeViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -31,22 +32,22 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ListarTruequeActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private ArticuloViewModel articuloViewModel;
+    private ArticuloTruequeViewModel articuloTruequeViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_articulo);
+        setContentView(R.layout.activity_listar_trueque_articulo);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewArticulos);
-        final ArticuloListAdapter adapter = new ArticuloListAdapter(new ArticuloListAdapter.ArticuloDiff());
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
+        final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        articuloViewModel = new ViewModelProvider(this, new ArticuloFactory(getApplication())).get(ArticuloViewModel.class);
+        articuloTruequeViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(), "z")).get(ArticuloTruequeViewModel.class);
 
-        articuloViewModel.getArticulos().observe(this, articulos -> {
+        articuloTruequeViewModel.findTruequesDisponibles().observe(this, articulos -> {
 
             adapter.submitList(articulos);
         });
@@ -89,7 +90,7 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
 
 
-            articuloViewModel.insert(articulo);
+            articuloTruequeViewModel.insert(articulo);
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_registrado, Toast.LENGTH_LONG).show();
         }
@@ -102,13 +103,18 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
                 Toast.makeText(getApplicationContext(), R.string.menu_trueque, Toast.LENGTH_LONG).show();
                 break;
             case R.id.nav_perfil:
-                Toast.makeText(getApplicationContext(), R.string.menu_perfil, Toast.LENGTH_LONG).show();
+                Intent intentP = new Intent(ListarTruequeActivity.this, AgregarUsuarioActivity.class);
+
+                startActivity(intentP);
                 break;
             case R.id.nav_articulo:
-                Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();
+                Intent intentLU = new Intent(ListarTruequeActivity.this, ListarArticuloActivity.class);
+
+                startActivity(intentLU);
+                //Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();
                 break;
             default:
-                throw new IllegalArgumentException("Opcion no existente");
+                throw new IllegalArgumentException("Opción no existente");
         }
 
         return true;

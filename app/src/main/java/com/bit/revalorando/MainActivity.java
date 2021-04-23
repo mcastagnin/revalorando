@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         final Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, ListarUsuarioActivity.class);
+            Intent intent = new Intent(MainActivity.this, ListarTruequeActivity.class);
 
             startActivityForResult(intent, NEW_LISTAR_USUARIO_REQ_CODE);
         });
