@@ -65,6 +65,8 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
 
 
+
+
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setSubtitle(R.string.app_subtitle);
@@ -100,7 +102,7 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
             articuloTruequeViewModel.insert(articulo);
         } else {
-            Toast.makeText(getApplicationContext(), R.string.no_registrado, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.no_guardado, Toast.LENGTH_LONG).show();
         }
     }
 

@@ -32,4 +32,18 @@ public class ArticuloRepository {
             articuloDao.insert(articulo);
         });
     }
+
+    public void update(Articulo articulo){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            articuloDao.update(articulo);
+        });
+    }
+
+
+
+    public void delete(Articulo articulo){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            articuloDao.delete(articulo);
+        });
+    }
 }

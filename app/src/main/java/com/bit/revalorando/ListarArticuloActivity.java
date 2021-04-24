@@ -1,38 +1,34 @@
 package com.bit.revalorando;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.bit.revalorando.entities.Articulo;
-import com.google.android.material.appbar.MaterialToolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
-import com.google.android.material.navigation.NavigationView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.Toast;
-import android.text.TextUtils;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.widget.Toast;
+import com.google.android.material.appbar.MaterialToolbar;
+
 import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.models.ArticuloViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ListarArticuloActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ArticuloViewModel articuloViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
+    public static final int UPDATE_ARTICULO_REQ_CODE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +54,44 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
         });
 
+        adapter.setOnItemClickListener(new ArticuloListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemDelete(Articulo articulo) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarArticuloActivity.this);
+                builder.setMessage(R.string.msg_borrar);
+                builder.setTitle(R.string.titulo_borrar);
+
+                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        articuloViewModel.delete(articulo);
+                        Toast.makeText(getApplicationContext(), R.string.eliminado_articulo, Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+            }
+
+            @Override
+            public void OnItemClick(Articulo articulo) {
+                Intent intent = new Intent(ListarArticuloActivity.this, AgregarArticuloActivity.class);
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
+
+                startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
+            }
+        });
+        
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setSubtitle(R.string.app_subtitle);
@@ -84,16 +118,30 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             articulo.setCondicion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_CONDICION));
             articulo.setEstado(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_ESTADO));
             articulo.setIdUsuario(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_IDUSUARIO,0));
-*/
+*/          articuloViewModel.insert(articulo);
+
+        } else if ( requestCode == UPDATE_ARTICULO_REQ_CODE && resultCode == RESULT_OK){
+            int id = data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID, -1);
+            if (id == -1 ){
+                Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
+            }
+
+            Articulo articulo = new Articulo();
+            articulo.setId(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID,-1));
+            articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
+            articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
+            articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
+            Log.d("info articulo", articulo.getNombre());
+            articuloViewModel.update(articulo);
 
 
-
-
-            articuloViewModel.insert(articulo);
         } else {
-            Toast.makeText(getApplicationContext(), R.string.no_registrado, Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
         }
     }
+
+    
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

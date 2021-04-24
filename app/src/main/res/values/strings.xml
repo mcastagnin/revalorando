@@ -16,11 +16,15 @@
     <string name="descripcion_articulo">Ingrese la descripción</string>
     <string name="imagen_articulo">Ingrese url</string>
 
+    <string name="eliminado_articulo">Se ha eliminado el artículo</string>
+    <string name="no_eliminado_articulo">No se ha eliminado el artículo</string>
 
     <string name="add_usuario">Registrar nuevo usuario</string>
     <string name="guardar">Guardar</string>
     <string name="registrarse">Registrarse</string>
-    <string name="no_registrado">No se pudo registrar el usuario</string>
+    <string name="no_guardado">No se ha podido eliminar</string>
+    <string name="no_registrado">No se ha podido eliminar</string>
+
     <string name="login">Iniciar sesión</string>
     <string name="add_articulo">Agregar un artículo</string>
     <string name="app_subtitle">Tu mejor oportunidad</string>
