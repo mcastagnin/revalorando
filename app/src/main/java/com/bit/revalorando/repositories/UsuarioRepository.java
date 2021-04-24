@@ -31,4 +31,11 @@ public class UsuarioRepository {
             usuarioDao.insert(usuario);
         });
     }
+
+    public Usuario buscarUsuario(String nick){
+        Usuario user = null;
+        user = usuarioDao.findByUsuario(nick);
+
+        return user;
+    }
 }

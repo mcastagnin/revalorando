@@ -7,6 +7,7 @@ import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.models.ArticuloTruequeViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SearchView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,23 +33,27 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.models.ArticuloViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+//import androidx.appcompat.widget.SearchView;
 
-public class ListarTruequeActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ListarTruequeActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ArticuloTruequeViewModel articuloTruequeViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
-    private String nombreArticulo = "zap";
+    private SearchView svBarraBusqueda;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_trueque_articulo);
+
+
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
         final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        articuloTruequeViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(),nombreArticulo)).get(ArticuloTruequeViewModel.class);
+        articuloTruequeViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(),"")).get(ArticuloTruequeViewModel.class);
 
         articuloTruequeViewModel.findTruequesDisponibles().observe(this, articulos -> {
 
@@ -65,8 +70,6 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
 
 
-
-
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setSubtitle(R.string.app_subtitle);
@@ -79,9 +82,25 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        VariablesLogin variablesLogin = VariablesLogin.getInstance();
+        navigationView.getMenu().findItem(R.id.nav_usuario).setTitle(variablesLogin.usuarioGlobal);
+
+        //updateMenuTitles();
+
     }
 
 
+
+/*
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.nav_usuario);
+        VariablesLogin vLogin = VariablesLogin.getInstance();
+        item.setTitle(vLogin.usuarioGlobal);
+
+
+        return super.onPrepareOptionsMenu(menu);
+    }*/
 
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -109,6 +128,8 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            case R.id.nav_usuario:
+                break;
             case R.id.nav_trueque:
                 Toast.makeText(getApplicationContext(), R.string.menu_trueque, Toast.LENGTH_LONG).show();
                 break;
@@ -129,5 +150,6 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
         return true;
     }
+
 
 }

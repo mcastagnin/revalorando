@@ -5,12 +5,6 @@
     tools:context=".ListFrutasActivity">
 
     <item
-        android:id="@+id/action_add"
-        android:icon="@drawable/ic_baseline_add_24"
-        android:title="@string/add_usuario"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/action_about"
         android:icon="@drawable/ic_baseline_info_24"
         android:title="@string/about"

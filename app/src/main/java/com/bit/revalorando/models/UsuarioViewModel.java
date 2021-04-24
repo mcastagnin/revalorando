@@ -14,6 +14,7 @@ public class UsuarioViewModel extends AndroidViewModel {
 
     private UsuarioRepository usuarioRepository;
     private final LiveData<List<Usuario>> usuarios;
+    private Usuario usuario;
 
     public UsuarioViewModel(Application application){
         super(application);
@@ -24,6 +25,13 @@ public class UsuarioViewModel extends AndroidViewModel {
     public LiveData<List<Usuario>> getUsuarios(){
         return usuarios;
     }
+
+    public Usuario getUsuario(String nick){
+        usuario = usuarioRepository.buscarUsuario(nick);
+
+        return usuario;
+    }
+
 
     public void insert(Usuario usuario){
         usuarioRepository.insert(usuario);

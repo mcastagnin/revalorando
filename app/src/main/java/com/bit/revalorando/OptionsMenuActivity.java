@@ -1,6 +1,8 @@
 package com.bit.revalorando;
 
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 public class OptionsMenuActivity extends AppCompatActivity {
 /*
+
     private GoogleSignInClient googleSignInClient;
 
     @Override
@@ -18,19 +21,22 @@ public class OptionsMenuActivity extends AppCompatActivity {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
         googleSignInClient = GoogleSignIn.getClient(this, gso);
     }
+*/
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.appbar_menu, menu);
         return super.onCreateOptionsMenu(menu);
-    }*/
+
+    }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_add:
-                return true;
             case R.id.action_about:
                 acercaDe();
                 return true;

@@ -44,16 +44,16 @@
             android:backgroundTint="@color/colorverde"
             />
 
-        <EditText
+        <androidx.appcompat.widget.SearchView
             android:id="@+id/barraBusquedaTrueques"
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginBottom="4dp"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Buscar en revalorando..."
             android:fontFamily="sans-serif"
             android:textSize="18sp"
+            app:iconifiedByDefault="false"
+            app:queryHint="Buscar en Revalorando"
             app:layout_constraintBottom_toTopOf="@+id/recyclerViewTrueques"
             app:layout_constraintEnd_toEndOf="@+id/toolbar"
             app:layout_constraintHorizontal_bias="0.0"

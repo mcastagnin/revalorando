@@ -13,7 +13,7 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/textViewIngresarUsuario"
+        android:id="@+id/textViewIngresarUsuarioLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -28,7 +28,7 @@
         android:textSize="18sp" />
 
     <EditText
-        android:id="@+id/textViewIngresarPassword"
+        android:id="@+id/textViewIngresarPasswordLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -56,7 +56,7 @@
         android:background="@color/btnBackground"
         android:text="@string/login"
         android:textColor="@color/btnLabel"
-        app:backgroundTint="@color/teal_700" />
+        app:backgroundTint="@color/colorverde" />
 
     <Button
         android:id="@+id/btnRegistro"
@@ -72,6 +72,6 @@
         android:background="@color/btnBackground"
         android:text="@string/registrarse"
         android:textColor="@color/btnLabel"
-        app:backgroundTint="@color/design_default_color_primary_dark" />
+        app:backgroundTint="@color/colorAZUL" />
 
 </LinearLayout>

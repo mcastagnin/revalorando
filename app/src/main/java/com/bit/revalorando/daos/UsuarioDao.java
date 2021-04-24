@@ -26,8 +26,8 @@ public interface UsuarioDao {
     @Delete
     void delete (Usuario usuario);
 
-    @Query("SELECT * FROM usuario where nombre like :nombre")
-    Usuario findByNombre(String nombre);
+    @Query("SELECT * FROM usuario where usuario like :nick")
+    Usuario findByUsuario(String nick);
 
     @Query("SELECT * FROM usuario where id = :id")
     Usuario findById(int id);

@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="navigation_view"
     >
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_perfil"
+            android:id="@+id/nav_usuario"
             android:icon = "@drawable/ic_baseline_account_box_24"
+            android:title="Usuario"
+            android:textSize="20sp"
+            />
+        />
+
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon = "@drawable/ic_baseline_engineering_24"
             android:title="@string/menu_perfil"/>
     </group>
 

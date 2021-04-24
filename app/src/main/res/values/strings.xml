@@ -44,6 +44,7 @@
     <string name="menu_trueque">Mis trueques</string>
     <string name="menu_articulo">Mis artículos</string>
     <string name="menu_otros">Otros</string>
+    <string name="menu_usuario" />
 
 
 </resources>

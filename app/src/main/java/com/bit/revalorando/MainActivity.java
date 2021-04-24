@@ -3,9 +3,12 @@ package com.bit.revalorando;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bit.revalorando.entities.Usuario;
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private UsuarioViewModel usuarioViewModel;
     public static final int NEW_LISTAR_USUARIO_REQ_CODE = 1;
     public static final int NEW_USUARIO_REQ_CODE = 1;
+
 
 
     @Override
@@ -34,9 +38,40 @@ public class MainActivity extends AppCompatActivity {
 
         final Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(view -> {
-            Intent intent = new Intent(MainActivity.this, ListarTruequeActivity.class);
 
-            startActivityForResult(intent, NEW_LISTAR_USUARIO_REQ_CODE);
+
+            final TextView tvUsuario = findViewById(R.id.textViewIngresarUsuarioLogin);
+            final TextView tvPassword = findViewById(R.id.textViewIngresarPasswordLogin);
+
+            Usuario usuarioLogin = null;
+            usuarioLogin = usuarioViewModel.getUsuario(tvUsuario.getText().toString());
+/*
+            Log.d("usuario=", usuarioLogin.getUsuario());
+            Log.d("contraseña:",usuarioLogin.getPassword());
+            Log.d("contraseñaingresada: ",tvPassword.getText().toString());
+*/
+            if(usuarioLogin != null){
+                if(usuarioLogin.getPassword().equals(tvPassword.getText().toString())){
+                    VariablesLogin vLogin = VariablesLogin.getInstance();
+                    vLogin.idUsuarioGlobal = usuarioLogin.getId();
+                    vLogin.usuarioGlobal = usuarioLogin.getUsuario();
+                    vLogin.passwordGlobal= usuarioLogin.getPassword();
+/*
+                    TextView itemUsuario = findViewById(R.id.nav_usuario);
+                    itemUsuario.setText(idUsuarioGlobal);
+*/
+                    Intent intent = new Intent(MainActivity.this, ListarTruequeActivity.class);
+
+                    startActivityForResult(intent, NEW_LISTAR_USUARIO_REQ_CODE);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecta", Toast.LENGTH_LONG).show();
+                }
+            }
+            else{
+                Toast.makeText(getApplicationContext(), "Usuario o contraseña incorrecta", Toast.LENGTH_LONG).show();
+            }
+
         });
 
         final Button btnRegistro = findViewById(R.id.btnRegistro);
