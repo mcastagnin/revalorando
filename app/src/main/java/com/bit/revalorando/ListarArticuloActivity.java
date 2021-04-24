@@ -126,6 +126,7 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
                 Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
             }
 
+
             Articulo articulo = new Articulo();
             articulo.setId(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID,-1));
             articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
