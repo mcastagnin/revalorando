@@ -11,6 +11,8 @@ import androidx.appcompat.widget.SearchView;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.google.android.material.navigation.NavigationView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -41,12 +43,10 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     private SearchView svBarraBusqueda;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_trueque_articulo);
-
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
         final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
@@ -65,6 +65,51 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
             Intent intent = new Intent(ListarTruequeActivity.this, AgregarArticuloActivity.class);
 
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
+        });
+
+
+        adapter.setOnItemClickListener(new ArticuloTruequeListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemDelete(Articulo articulo) {
+                /*
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarTruequeActivity.this);
+                builder.setMessage(R.string.msg_borrar);
+                builder.setTitle(R.string.titulo_borrar);
+
+                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                       // articuloTruequeViewModel.delete(articulo);
+                        Toast.makeText(getApplicationContext(), R.string.eliminado_articulo, Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+*/
+            }
+            @Override
+            public void OnItemClick(Articulo articulo) {
+
+                Intent intent = new Intent(ListarTruequeActivity.this, DescripcionArticuloActivity.class);
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
+
+                startActivity(intent);
+                /*Articulo art = arti;
+                int id = art.getId();
+                String idString = "" + id;
+                Toast.makeText(getApplicationContext(),idString, Toast.LENGTH_LONG).show();*/
+
+            }
         });
 
 

@@ -1,15 +1,21 @@
 package com.bit.revalorando;
 
+import android.content.Intent;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageButton;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.bit.revalorando.entities.Articulo;
 
+
 public class ArticuloTruequeListAdapter extends ListAdapter<Articulo,ArticuloTruequeViewHolder> {
 
+    private OnItemClickListener listener;
     public ArticuloTruequeListAdapter(@NonNull DiffUtil.ItemCallback<Articulo> diffCallbak){
         super(diffCallbak);
     }
@@ -27,6 +33,14 @@ public class ArticuloTruequeListAdapter extends ListAdapter<Articulo,ArticuloTru
         //holder.bind(articuloActual.getNombre());
         //holder.bind(articuloActual.getArticulo());
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(listener!=null){
+                    listener.OnItemClick(articuloActual);
+                }
+            }
+        });
 
     }
 
@@ -40,5 +54,14 @@ public class ArticuloTruequeListAdapter extends ListAdapter<Articulo,ArticuloTru
         public boolean areContentsTheSame(@NonNull Articulo oldItem, @NonNull Articulo newItem) {
             return oldItem.getNombre().equals(newItem.getNombre());
         }
+    }
+
+    public interface OnItemClickListener {
+        void onItemDelete(Articulo articulo);
+        void OnItemClick(Articulo articulo);
+    }
+
+    public void setOnItemClickListener(ArticuloTruequeListAdapter.OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

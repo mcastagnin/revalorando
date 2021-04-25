@@ -24,11 +24,14 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class ListarArticuloActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ArticuloViewModel articuloViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     public static final int UPDATE_ARTICULO_REQ_CODE = 2;
+    VariablesLogin vLogin = VariablesLogin.getInstance();
+    public int idUsuario = vLogin.idUsuarioGlobal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,9 +119,9 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
             /*articulo.setCategoria(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_CATEGORIA,0));
             articulo.setCondicion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_CONDICION));
-            articulo.setEstado(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_ESTADO));
-            articulo.setIdUsuario(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_IDUSUARIO,0));
-*/          articuloViewModel.insert(articulo);
+            articulo.setEstado(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_ESTADO));*/
+            articulo.setIdUsuario(idUsuario);
+            articuloViewModel.insert(articulo);
 
         } else if ( requestCode == UPDATE_ARTICULO_REQ_CODE && resultCode == RESULT_OK){
             int id = data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID, -1);
@@ -132,6 +135,8 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
             articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
             articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
+            articulo.setIdUsuario(idUsuario);
+
             Log.d("info articulo", articulo.getNombre());
             articuloViewModel.update(articulo);
 

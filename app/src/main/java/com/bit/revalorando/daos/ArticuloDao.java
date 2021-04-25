@@ -7,12 +7,14 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.bit.revalorando.VariablesLogin;
 import com.bit.revalorando.entities.Articulo;
 
 import java.util.List;
 
 @Dao
 public interface ArticuloDao {
+
 
     @Query("SELECT * from Articulo")
     LiveData<List<Articulo>> getAll();
@@ -34,7 +36,10 @@ public interface ArticuloDao {
 
     @Query("SELECT * FROM articulo " +
             "INNER JOIN trueque ON trueque.idArticulo1 = articulo.id " +
-            "WHERE articulo.nombre LIKE  '%'||:nombreArticulo ||'%' AND trueque.idArticulo2=-1")
+            "WHERE articulo.nombre LIKE  '%'||:nombreArticulo ||'%' AND trueque.idArticulo2= -1")
     LiveData<List<Articulo>> findTruequesDisponibles(String nombreArticulo);
 
+    @Query("SELECT * FROM articulo " +
+            "WHERE idUsuario =:idUsuario")
+    LiveData<List<Articulo>> findMisArticulos(int idUsuario);
 }

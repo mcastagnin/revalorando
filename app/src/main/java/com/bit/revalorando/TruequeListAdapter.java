@@ -1,15 +1,21 @@
 package com.bit.revalorando;
 
+import android.content.Intent;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
-
+import android.widget.ImageButton;
 import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
-
 import com.bit.revalorando.entities.Trueque;
+import com.bit.revalorando.entities.Articulo;
+
 
 public class TruequeListAdapter extends ListAdapter<Trueque,TruequeViewHolder> {
 
+    private OnItemClickListener listener;
     public TruequeListAdapter(@NonNull DiffUtil.ItemCallback<Trueque> diffCallbak){
         super(diffCallbak);
     }
@@ -41,4 +47,14 @@ public class TruequeListAdapter extends ListAdapter<Trueque,TruequeViewHolder> {
             return oldItem.getEstado().equals(newItem.getEstado());
         }
     }
+
+    public interface OnItemClickListener {
+        void onItemDelete(Articulo articulo);
+        void OnItemClick(Articulo articulo);
+    }
+
+    public void setOnItemClickListener(TruequeListAdapter.OnItemClickListener listener) {
+        this.listener = listener;
+    }
 }
+

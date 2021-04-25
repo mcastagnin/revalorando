@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.bit.revalorando.entities.Articulo;
+import com.bit.revalorando.entities.Usuario;
 import com.bit.revalorando.repositories.ArticuloRepository;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class ArticuloViewModel extends AndroidViewModel {
 
     private final LiveData<List<Articulo>> articulos;
     //private final List<Articulo> listTrueques;
+    private Articulo articulo;
 
 
     public ArticuloViewModel(Application application){
@@ -27,6 +29,12 @@ public class ArticuloViewModel extends AndroidViewModel {
 
     public LiveData<List<Articulo>> getArticulos(){
         return articulos;
+    }
+
+    public Articulo getArticulo(int id){
+        articulo = articuloRepository.buscarArticulo(id);
+
+        return articulo;
     }
 
 
