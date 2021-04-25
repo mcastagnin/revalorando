@@ -62,10 +62,10 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
             adapter.submitList(articulos);
         });
         svBarraBusqueda = findViewById(R.id.barraBusquedaTrueques);
-        if(vLogin.busquedaGlobal != ""){
+        //if(vLogin.busquedaGlobal != ""){
             svBarraBusqueda.setQuery(vLogin.busquedaGlobal.toString(), false);
 
-        }
+        //}
         initListener();
 
 
@@ -225,6 +225,16 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
     @Override
     public boolean onQueryTextChange(String newText) {
 
+        if(svBarraBusqueda.getQuery().toString().equals("")) {
+            vLogin.busquedaGlobal = svBarraBusqueda.getQuery().toString();
+            Log.d("veremos:", vLogin.busquedaGlobal);
+            Intent intentLT = new Intent(ListarTruequeActivity.this, ListarTruequeActivity.class);
+
+            finish();
+            startActivity(getIntent());
+        }
+        return false;
+
 /*
         setContentView(R.layout.activity_listar_trueque_articulo);
 
@@ -240,6 +250,5 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
             adapter.submitList(articulos);
         });*/
 
-        return false;
     }
 }
