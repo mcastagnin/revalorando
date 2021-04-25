@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
@@ -34,11 +35,20 @@ public class ArticuloListAdapter extends ListAdapter<Articulo,ArticuloViewHolder
         //holder.bind(articuloActual.getArticulo());
 
         ImageButton deleteButton = holder.itemView.findViewById(R.id.imageButtonDelete);
+        Button publicarButton = holder.itemView.findViewById(R.id.buttonPublicar);
+
         deleteButton.setOnClickListener(view -> {
             if(listener!=null){
                 listener.onItemDelete(articuloActual);
             }
         });
+
+        publicarButton.setOnClickListener(view -> {
+            if(listener!=null){
+                listener.onItemPublicar(articuloActual);
+            }
+        });
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +75,8 @@ public class ArticuloListAdapter extends ListAdapter<Articulo,ArticuloViewHolder
     public interface OnItemClickListener {
         void onItemDelete(Articulo articulo);
         void OnItemClick(Articulo articulo);
+        void onItemPublicar(Articulo articulo);
+
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

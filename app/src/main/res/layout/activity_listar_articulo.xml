@@ -8,9 +8,7 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ListarArticuloActivity">
@@ -19,13 +17,16 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewArticulos"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+
+            android:layout_width="408dp"
+            android:layout_height="619dp"
+            android:layout_marginBottom="8dp"
             android:padding="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar"
             tools:listitem="@layout/articulo_item" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -39,6 +40,32 @@
             android:src="@drawable/ic_baseline_add_24"
             android:backgroundTint="@color/colorverde"
             />
+
+        <TextView
+            android:id="@+id/etiquetaMisArticulos"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/colorverde"
+            android:ems="10"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="Mis Articulos"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            app:iconifiedByDefault="false"
+            app:layout_constraintBottom_toTopOf="@+id/recyclerViewArticulos"
+            app:layout_constraintEnd_toEndOf="@+id/toolbar"
+
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_bias="0.0"
+
+
+            />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.navigation.NavigationView

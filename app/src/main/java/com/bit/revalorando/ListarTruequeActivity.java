@@ -71,9 +71,10 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
         fab.setOnClickListener( view -> {
-            Intent intent = new Intent(ListarTruequeActivity.this, AgregarArticuloActivity.class);
+            Intent intent = new Intent(ListarTruequeActivity.this, ListarArticuloActivity.class);
 
-            startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
+            //startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
+            startActivity(intent);
         });
 
 
@@ -251,4 +252,6 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         });*/
 
     }
+    @Override public void onBackPressed() { return; }
+
 }

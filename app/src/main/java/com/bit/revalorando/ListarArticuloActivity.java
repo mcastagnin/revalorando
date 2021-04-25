@@ -93,6 +93,30 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
 
                 startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
             }
+
+            @Override
+            public void onItemPublicar(Articulo articulo) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarArticuloActivity.this);
+                builder.setMessage("Desea publicar el artículo para ser intercambiado?");
+                builder.setTitle("Publicar el Artículo");
+
+                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        //articuloViewModel.delete(articulo);
+                        Toast.makeText(getApplicationContext(), "Artículo publicado", Toast.LENGTH_LONG).show();
+                    }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getApplicationContext(), "Artículo no publicado", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
         });
         
         MaterialToolbar toolbar = findViewById(R.id.toolbar);

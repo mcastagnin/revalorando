@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutItemArticulo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="144dp"
             android:padding="16dp">
 
             <ImageView
@@ -29,8 +29,7 @@
                 android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/textViewNombre"
@@ -38,7 +37,7 @@
                 android:layout_height="45dp"
                 android:layout_marginStart="90dp"
                 android:layout_marginLeft="90dp"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,6 +60,25 @@
                 app:layout_constraintEnd_toEndOf="@+id/textViewNombre"
                 app:layout_constraintTop_toTopOf="@+id/textViewDescripcion"
                 app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
+
+            <Button
+                android:id="@+id/buttonPublicar"
+                android:layout_width="235dp"
+                android:layout_height="39dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="78dp"
+                android:layout_marginRight="78dp"
+                android:text="Publicar para intercambio"
+                android:textColor="@color/btnLabel"
+                app:backgroundTint="@color/colorverde"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imagen"
+                app:layout_constraintTop_toBottomOf="@+id/textViewDescripcion"
+                app:layout_constraintVertical_bias="0.937" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
