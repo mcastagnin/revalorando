@@ -59,8 +59,15 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:background="@color/white"
+
+
+        />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
@@ -71,3 +78,5 @@
         app:headerLayout="@layout/nav_header"/>
 
 </androidx.drawerlayout.widget.DrawerLayout>
+
+

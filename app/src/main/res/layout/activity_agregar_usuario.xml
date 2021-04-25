@@ -1,110 +1,241 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <EditText
-        android:id="@+id/textViewIngresarUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/nick_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/textViewIngresarPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="@string/password_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/textViewIngresarPassword2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:hint="@string/password2_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-
-    <EditText
-        android:id="@+id/textViewIngresarNombre"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/nombre_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarApellido"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/apellido_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/email_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarTelefono"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/telefono_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarDireccion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/direccion_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarNumero"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/numero_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarLocalidad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/localidad_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
-    <EditText
-        android:id="@+id/textViewIngresarDepartamento"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/departamento_usuario"
-        android:fontFamily="sans-serif"
-        android:textSize="18sp"/>
 
 
-    <CheckBox
-        android:id="@+id/checkBoxCondiciones"
-        android:layout_width="match_parent"
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Acepto terminos y condicones."
-        android:layout_centerInParent="true"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            app:srcCompat="@drawable/logo" />
 
-        />
+        <TextView
+            android:id="@+id/etiquetaNuevoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorverde"
+            android:text="DATOS DEL USUARIO"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textIsSelectable="false"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/textViewIngresarUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nick_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/textViewIngresarPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/password_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/textViewIngresarPassword2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="@string/password2_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/textViewIngresarNombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        <EditText
+            android:id="@+id/textViewIngresarApellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/apellido_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"        android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/textViewIngresarEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"        android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/textViewIngresarTelefono"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/telefono_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/textViewIngresarDireccion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/direccion_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/textViewIngresarNumero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/numero_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+        <EditText
+            android:id="@+id/textViewIngresarLocalidad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/localidad_usuario"
+            android:fontFamily="sans-serif"
+            android:textSize="18sp"        android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            />
+        <Spinner
+            android:id="@+id/textViewIngresarDepartamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif"
+            android:hint="Seleccione departmento"
+            android:textSize="18sp"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
 
 
-    <Button
-        android:id="@+id/btnGuardar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/btnBackground"
-        android:textColor="@color/btnLabel"
-        android:text="@string/registrarse"/>
+        <CheckBox
+            android:id="@+id/checkBoxCondiciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Acepto terminos y condicones."
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
 
+            />
+
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorverde"
+            android:textColor="@color/white"
+            android:text="@string/registrarse"
+            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>
+
+    <!-- android:hint="@string/departamento_usuario" -->

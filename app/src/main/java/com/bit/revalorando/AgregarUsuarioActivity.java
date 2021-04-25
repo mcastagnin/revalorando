@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 public class AgregarUsuarioActivity extends AppCompatActivity {
     public static final String EXTRA_MSG_USUARIO = "com.bit.revalorando.MSG_GUARDAR_USUARIO";
@@ -32,7 +34,7 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
     private EditText editTextDireccion;
     private EditText editTextNumero;
     private EditText editTextLocalidad;
-    private EditText editTextDepartamento;
+    private Spinner  spinnerDepartamento;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,15 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
         editTextDireccion = findViewById(R.id.textViewIngresarDireccion);
         editTextNumero = findViewById(R.id.textViewIngresarNumero);
         editTextLocalidad = findViewById(R.id.textViewIngresarLocalidad);
-        editTextDepartamento = findViewById(R.id.textViewIngresarDepartamento);
+        spinnerDepartamento = (Spinner) findViewById(R.id.textViewIngresarDepartamento);
+// Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.departamentos_array, android.R.layout.simple_spinner_item);
+// Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+// Apply the adapter to the spinner
+        spinnerDepartamento.setAdapter(adapter);
+       // editTextDepartamento = findViewById(R.id.textViewIngresarDepartamento);
 
 
         final Button btnAgregar = findViewById(R.id.btnGuardar);
@@ -69,7 +79,9 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
                 String direccion = editTextDireccion.getText().toString();
                 String numero = editTextNumero.getText().toString();
                 String localidad = editTextLocalidad.getText().toString();
-                String departamento = editTextDepartamento.getText().toString();
+                String departamento = spinnerDepartamento.getSelectedItem().toString();
+
+                //String departamento = editTextDepartamento.getText().toString();
 
                 respuesta.putExtra(EXTRA_MSG_USUARIO, usuario);
                 respuesta.putExtra(EXTRA_MSG_PASSWORD, password);

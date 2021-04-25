@@ -46,5 +46,27 @@
     <string name="menu_otros">Otros</string>
     <string name="menu_usuario" />
 
+    <string-array name="departamentos_array">
+        <item>Artigas</item>
+        <item>Canelones</item>
+        <item>Cerro largo</item>
+        <item>Colonia</item>
+        <item>Durazno</item>
+        <item>Flores</item>
+        <item>Florida</item>
+        <item>Lavalleja</item>
+        <item>Maldonado</item>
+        <item>Montevideo</item>
+        <item>Paysandu</item>
+        <item>Río negro</item>
+        <item>Rivera</item>
+        <item>Rocha</item>
+        <item>Salto</item>
+        <item>San jose</item>
+        <item>Soriano</item>
+        <item>Tacuarembo</item>
+        <item>Treinta y tres</item>
+    </string-array>
+
 
 </resources>
