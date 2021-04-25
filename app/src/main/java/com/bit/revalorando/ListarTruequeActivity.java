@@ -137,8 +137,7 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        VariablesLogin variablesLogin = VariablesLogin.getInstance();
-        navigationView.getMenu().findItem(R.id.nav_usuario).setTitle(variablesLogin.usuarioGlobal);
+        navigationView.getMenu().findItem(R.id.nav_usuario).setTitle(vLogin.usuarioGlobal);
 
         //updateMenuTitles();
 

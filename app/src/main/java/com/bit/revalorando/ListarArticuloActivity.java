@@ -14,6 +14,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import com.bit.revalorando.entities.Trueque;
+import com.bit.revalorando.models.TruequeViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 
 import com.bit.revalorando.entities.Articulo;
@@ -28,6 +31,8 @@ import java.util.logging.Logger;
 public class ListarArticuloActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ArticuloViewModel articuloViewModel;
+    private TruequeViewModel truequeViewModel;
+
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     public static final int UPDATE_ARTICULO_REQ_CODE = 2;
     VariablesLogin vLogin = VariablesLogin.getInstance();
@@ -49,6 +54,16 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
 
             adapter.submitList(articulos);
         });
+
+
+        final TruequeListAdapter adapterT = new TruequeListAdapter(new TruequeListAdapter.TruequeDiff());
+        truequeViewModel = new ViewModelProvider(this, new TruequeFactory(getApplication())).get(TruequeViewModel.class);
+
+        truequeViewModel.getTrueques().observe(this, trueques -> {
+
+            adapterT.submitList(trueques);
+        });
+
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
         fab.setOnClickListener( view -> {
@@ -103,8 +118,21 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
                 builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Trueque trueque = new Trueque();
+                        trueque.setEstado("d");
+                        trueque.setIdArticulo1(articulo.getId());
+                        trueque.setIdUsuario1(idUsuario);
+                        trueque.setIdArticulo2(-1);
+                        trueque.setIdUsuario2(-1);
+                        truequeViewModel.insert(trueque);
+                        articulo.setEstado("n");
+                        articuloViewModel.update(articulo);
+
+
                         //articuloViewModel.delete(articulo);
                         Toast.makeText(getApplicationContext(), "Artículo publicado", Toast.LENGTH_LONG).show();
+                       // Toast.makeText(getApplicationContext(), "" + articulo.getId(), Toast.LENGTH_LONG).show();
+
                     }
                 });
                 builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
@@ -130,6 +158,8 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
 
         NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.getMenu().findItem(R.id.nav_usuario).setTitle(vLogin.usuarioGlobal);
 
     }
 
