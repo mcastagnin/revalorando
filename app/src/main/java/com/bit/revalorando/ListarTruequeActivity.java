@@ -35,18 +35,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.models.ArticuloViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-//import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 
-public class ListarTruequeActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ListarTruequeActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
 
     private ArticuloTruequeViewModel articuloTruequeViewModel;
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     private SearchView svBarraBusqueda;
+    VariablesLogin vLogin = VariablesLogin.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_trueque_articulo);
+
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
         final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
@@ -59,6 +61,13 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
 
             adapter.submitList(articulos);
         });
+        svBarraBusqueda = findViewById(R.id.barraBusquedaTrueques);
+        if(vLogin.busquedaGlobal != ""){
+            svBarraBusqueda.setQuery(vLogin.busquedaGlobal.toString(), false);
+
+        }
+        initListener();
+
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
         fab.setOnClickListener( view -> {
@@ -196,5 +205,41 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         return true;
     }
 
+    private void initListener(){
+        svBarraBusqueda.setOnQueryTextListener(this);
+    }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        //vLogin.busquedaGlobal = svBarraBusqueda.getQuery().toString();
+
+        vLogin.busquedaGlobal = svBarraBusqueda.getQuery().toString();
+        Log.d("veremos:",vLogin.busquedaGlobal);
+        Intent intentLT = new Intent(ListarTruequeActivity.this, ListarTruequeActivity.class);
+
+        finish();
+        startActivity(getIntent());
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+/*
+        setContentView(R.layout.activity_listar_trueque_articulo);
+
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
+        final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        articuloTruequeViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(),"")).get(ArticuloTruequeViewModel.class);
+
+        articuloTruequeViewModel.findTruequesDisponibles().observe(this, articulos -> {
+
+            adapter.submitList(articulos);
+        });*/
+
+        return false;
+    }
 }

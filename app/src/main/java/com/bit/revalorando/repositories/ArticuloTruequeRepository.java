@@ -21,7 +21,7 @@ public class ArticuloTruequeRepository {
     public ArticuloTruequeRepository(Application application, String nombreArticulo){
         AppDatabase db = AppDatabase.getInstance(application);
         articuloDao = db.articuloDao();
-        truequesDisponibles = articuloDao.findTruequesDisponibles(busqueda);
+        truequesDisponibles = articuloDao.findTruequesDisponibles(busqueda, vLogin.idUsuarioGlobal);
 
     }
 
