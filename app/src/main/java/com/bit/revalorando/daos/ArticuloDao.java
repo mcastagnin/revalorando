@@ -40,6 +40,6 @@ public interface ArticuloDao {
     LiveData<List<Articulo>> findTruequesDisponibles(String nombreArticulo, int idUsuario);
 
     @Query("SELECT * FROM articulo " +
-            "WHERE idUsuario =:idUsuario")
+            "WHERE idUsuario =:idUsuario AND estado LIKE 'd'")
     LiveData<List<Articulo>> findMisArticulos(int idUsuario);
 }

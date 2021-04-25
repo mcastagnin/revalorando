@@ -22,6 +22,7 @@ public class ArticuloViewHolder  extends RecyclerView.ViewHolder {
         nombreItemView = itemView.findViewById(R.id.textViewNombre);
         descripcionItemView = itemView.findViewById(R.id.textViewDescripcion);
         imagenView = itemView.findViewById(R.id.imagen);
+
     }
 
     public void bind(String nombre, String descripcion, String url){

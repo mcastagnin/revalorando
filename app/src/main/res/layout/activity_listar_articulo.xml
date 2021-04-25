@@ -50,7 +50,7 @@
             android:ems="10"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="Mis Articulos"
+            android:text="Mis Artículos"
             android:textColor="#FFFFFF"
             android:textIsSelectable="false"
             android:textSize="18sp"
