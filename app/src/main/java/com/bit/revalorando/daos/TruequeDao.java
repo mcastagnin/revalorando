@@ -38,4 +38,9 @@ public interface TruequeDao {
 
     @Query("SELECT * FROM trueque where id = :id")
     Trueque findById(int id);
+
+    @Query(" UPDATE Trueque SET idArticulo2 = :idArticulo2, idUsuario2=:idUsuario2, estado ='p' WHERE idArticulo1=:idArticulo1")
+    void updateTruequeByArticuloId(int idArticulo2, int idUsuario2, int idArticulo1);
+
+
 }

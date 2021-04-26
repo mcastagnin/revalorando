@@ -41,5 +41,8 @@ public class TruequeViewModel extends AndroidViewModel {
     public void deleteTruequeByArticuloId(int id){
         truequeRepository.deleteTruequeByArticuloId(id);
     }
+    public void updateTruequeByArticuloId(int idArticulo2, int idUsuario2, int idArticulo1){
+        truequeRepository.updateTruequeByArticuloId(idArticulo2,idUsuario2,idArticulo1);
+    }
 }
 

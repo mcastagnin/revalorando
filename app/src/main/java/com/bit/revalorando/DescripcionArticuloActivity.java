@@ -2,12 +2,19 @@ package com.bit.revalorando;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.bit.revalorando.entities.Articulo;
+import com.bit.revalorando.entities.Trueque;
+import com.bit.revalorando.models.ArticuloViewModel;
+import com.bit.revalorando.models.TruequeViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.squareup.picasso.Picasso;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -25,10 +32,18 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
     public static final String EXTRA_MSG_NOMBRE = "com.bit.revalorando.MSG_GUARDAR_NOMBRE";
     public static final String EXTRA_MSG_DESCRIPCION = "com.bit.revalorando.MSG_GUARDAR_DESCRIPCION";
     public static final String EXTRA_MSG_FOTO = "com.bit.revalorando.MSG_GUARDAR_FOTO";
+    public static final String EXTRA_MSG_ID_USUARIO = "com.bit.revalorando.MSG_GUARDAR_ID_USUARIO";
+
+    private static final int OFERTAR_TRUEQUE_REQ_CODE = 1;
 
     private TextView editTextNombre;
     private TextView editTextDescripcion;
     private ImageView imagenView;
+    VariablesLogin vLogin = VariablesLogin.getInstance();
+
+    private ArticuloViewModel articuloViewModel;
+    private TruequeViewModel truequeViewModel;
+
 
 //    private EditText editTextImagen;
 
@@ -92,5 +107,53 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
             }
         });
 
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if ( requestCode == OFERTAR_TRUEQUE_REQ_CODE && resultCode == RESULT_OK){
+            int idArticulo2 = data.getIntExtra(ListarArticuloActivity.EXTRA_MSG_ARTICULO_ID, -1);
+            if (idArticulo2 == -1 ){
+                Toast.makeText(getApplicationContext(), "No se ha realizado la oferta.", Toast.LENGTH_LONG).show();
+            }
+
+            final TruequeListAdapter adapterT = new TruequeListAdapter(new TruequeListAdapter.TruequeDiff());
+            truequeViewModel = new ViewModelProvider(this, new TruequeFactory(getApplication())).get(TruequeViewModel.class);
+
+            truequeViewModel.getTrueques().observe(this, trueques -> {
+
+                adapterT.submitList(trueques);
+            });
+
+/*
+            Trueque trueque = new Trueque();
+            trueque.setIdUsuario1();
+            trueque.setIdArticulo1(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID,-1));
+            trueque.setIdUsuario2(vLogin.idUsuarioGlobal);
+            trueque.setIdArticulo2(idArticulo2);
+            trueque.setEstado("p");*/
+            truequeViewModel.updateTruequeByArticuloId(idArticulo2,vLogin.idUsuarioGlobal, data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID,-1));
+
+            //truequeViewModel.update(trueque);
+
+
+            Articulo articulo = new Articulo();
+            articulo.setId(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID,-1));
+            articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
+            articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
+            articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
+            articulo.setIdUsuario(vLogin.idUsuarioGlobal);
+            articulo.setCategoria(1);
+            articulo.setEstado("n");
+            articuloViewModel.update(articulo);
+
+
+            //Log.d("info articulo", articulo.getNombre());
+
+
+        } else {
+            Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
+        }
     }
 }

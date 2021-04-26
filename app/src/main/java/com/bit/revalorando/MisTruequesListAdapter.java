@@ -31,7 +31,7 @@ public class MisTruequesListAdapter extends ListAdapter<Articulo,MisTruequesView
         //holder.bind(articuloActual.getNombre());
         //holder.bind(articuloActual.getArticulo());
 
-        ImageButton deleteButton = holder.itemView.findViewById(R.id.imageButtonDeleteMisArticulos);
+        ImageButton deleteButton = holder.itemView.findViewById(R.id.imageButtonDeleteMisTrueques);
 
         deleteButton.setOnClickListener(view -> {
             if(listener!=null){

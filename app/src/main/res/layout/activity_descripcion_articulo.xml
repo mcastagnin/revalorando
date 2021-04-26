@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorverde"
         android:textColor="#FFFFFF"
-        android:text="Intercambiar"
+        android:text="OFERTAR INTERCAMBIO"
         android:layout_margin="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"

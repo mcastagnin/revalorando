@@ -35,6 +35,8 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
 
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     public static final int UPDATE_ARTICULO_REQ_CODE = 2;
+    public static final String EXTRA_MSG_ARTICULO_ID = "com.bit.revalorando.MSG_GUARDAR_ARTICULO_ID";
+
     VariablesLogin vLogin = VariablesLogin.getInstance();
     public int idUsuario = vLogin.idUsuarioGlobal;
 
@@ -160,6 +162,8 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.getMenu().findItem(R.id.nav_usuario).setTitle(vLogin.usuarioGlobal);
+
+
 
     }
 

@@ -47,6 +47,12 @@ public class TruequeRepository {
         });
     }
 
+    public void updateTruequeByArticuloId(int idArticulo2, int idUsuario2, int idArticulo1){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            truequeDao.updateTruequeByArticuloId(idArticulo2,idUsuario2,idArticulo1);
+        });
+    }
+
     public void delete(Trueque trueque){
         AppDatabase.databaseWriteExecutor.execute(() -> {
             truequeDao.delete(trueque);

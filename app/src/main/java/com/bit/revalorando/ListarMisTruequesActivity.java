@@ -43,7 +43,7 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
         setContentView(R.layout.activity_listar_mis_trueques);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewMisTruequesDisponibles);
-        final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
+        final MisTruequesListAdapter adapter = new MisTruequesListAdapter(new MisTruequesListAdapter.ArticuloDiff());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -79,7 +79,7 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
         });
 
-        adapter.setOnItemClickListener(new ArticuloTruequeListAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new MisTruequesListAdapter.OnItemClickListener() {
             @Override
             public void onItemDelete(Articulo articulo) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListarMisTruequesActivity.this);
@@ -89,7 +89,7 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
                 builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        articulo.setEstado("n");
+                        articulo.setEstado("d");
                         articuloViewModel.update(articulo);
                         truequeViewModel.deleteTruequeByArticuloId(articulo.getId());
                         //articuloViewModel.delete(articulo);
@@ -117,6 +117,11 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
 
                 startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
+            }
+
+            @Override
+            public void onItemPublicar(Articulo articulo) {
+
             }
 
 
