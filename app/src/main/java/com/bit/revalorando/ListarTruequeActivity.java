@@ -49,7 +49,6 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listar_trueque_articulo);
 
-
         RecyclerView recyclerView = findViewById(R.id.recyclerViewTrueques);
         final ArticuloTruequeListAdapter adapter = new ArticuloTruequeListAdapter(new ArticuloTruequeListAdapter.ArticuloDiff());
         recyclerView.setAdapter(adapter);
@@ -185,8 +184,9 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
             case R.id.nav_usuario:
                 break;
             case R.id.nav_trueque:
-                Toast.makeText(getApplicationContext(), R.string.menu_trueque, Toast.LENGTH_LONG).show();
-                break;
+                Intent intentT = new Intent(ListarTruequeActivity.this, ListarMisTruequesActivity.class);
+
+                startActivity(intentT);                break;
             case R.id.nav_perfil:
                 Intent intentP = new Intent(ListarTruequeActivity.this, AgregarUsuarioActivity.class);
 

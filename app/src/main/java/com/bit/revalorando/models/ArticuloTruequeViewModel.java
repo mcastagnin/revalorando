@@ -16,6 +16,8 @@ public class ArticuloTruequeViewModel extends AndroidViewModel {
     private ArticuloTruequeRepository articuloTruequeRepository;
 
     private final LiveData<List<Articulo>> articulosTrueques;
+    private final LiveData<List<Articulo>> misTruequesDisponibles;
+
     //private final List<Articulo> listTrueques;
 
 
@@ -23,7 +25,7 @@ public class ArticuloTruequeViewModel extends AndroidViewModel {
         super(application);
         articuloTruequeRepository = new ArticuloTruequeRepository(application, nombreArticulo);
         articulosTrueques = articuloTruequeRepository.findTruequesDisponibles();
-
+        misTruequesDisponibles =articuloTruequeRepository.findMisTruequesDisponibles();
     }
 
 
@@ -33,8 +35,14 @@ public class ArticuloTruequeViewModel extends AndroidViewModel {
     }
 
 
+    public LiveData<List<Articulo>> findMisTruequesDisponibles() {
+
+        return misTruequesDisponibles;
+    }
+
     public void insert(Articulo articulo){
         articuloTruequeRepository.insert(articulo);
     }
+
 }
 

@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData;
 
 import com.bit.revalorando.daos.TruequeDao;
 import com.bit.revalorando.database.AppDatabase;
+import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.entities.Trueque;
 
 import java.util.List;
@@ -29,6 +30,26 @@ public class TruequeRepository {
     public void insert(Trueque trueque){
         AppDatabase.databaseWriteExecutor.execute(() -> {
             truequeDao.insert(trueque);
+        });
+    }
+
+    public void update(Trueque trueque){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            truequeDao.update(trueque);
+        });
+    }
+
+
+
+    public void deleteTruequeByArticuloId(int id){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            truequeDao.deleteTruequeByArticuloId(id);
+        });
+    }
+
+    public void delete(Trueque trueque){
+        AppDatabase.databaseWriteExecutor.execute(() -> {
+            truequeDao.delete(trueque);
         });
     }
 }

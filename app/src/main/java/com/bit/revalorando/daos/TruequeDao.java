@@ -33,6 +33,8 @@ public interface TruequeDao {
     @Delete
     void delete (Trueque trueque);
 
+    @Query("DELETE FROM trueque WHERE idArticulo1 = :id")
+    void deleteTruequeByArticuloId(int id);
 
     @Query("SELECT * FROM trueque where id = :id")
     Trueque findById(int id);

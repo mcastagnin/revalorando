@@ -3,10 +3,13 @@ package com.bit.revalorando;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -62,7 +65,30 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
        // editTextDepartamento = findViewById(R.id.textViewIngresarDepartamento);
 
 
+
+
         final Button btnAgregar = findViewById(R.id.btnGuardar);
+        btnAgregar.setBackgroundColor(getResources().getColor(R.color.colorGris));
+        btnAgregar.setEnabled(false);
+
+        CheckBox checkTerminos= ( CheckBox ) findViewById( R.id.checkBoxCondiciones);
+        checkTerminos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
+            {
+                if ( isChecked )
+                {
+                    btnAgregar.setBackgroundColor(getResources().getColor(R.color.colorverde));
+                    btnAgregar.setEnabled(true);
+
+
+                }else{
+                    btnAgregar.setBackgroundColor(getResources().getColor(R.color.colorGris));
+                    btnAgregar.setEnabled(false);
+                }
+
+            }
+        });
         btnAgregar.setOnClickListener(view -> {
             Intent respuesta = new Intent();
             if(TextUtils.isEmpty(editTextNick.getText())){
