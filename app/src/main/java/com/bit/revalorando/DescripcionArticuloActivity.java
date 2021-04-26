@@ -118,6 +118,7 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
                 Toast.makeText(getApplicationContext(), "No se ha realizado la oferta.", Toast.LENGTH_LONG).show();
             }
 
+
             final TruequeListAdapter adapterT = new TruequeListAdapter(new TruequeListAdapter.TruequeDiff());
             truequeViewModel = new ViewModelProvider(this, new TruequeFactory(getApplication())).get(TruequeViewModel.class);
 
