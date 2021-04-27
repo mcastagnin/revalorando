@@ -27,7 +27,7 @@ import com.google.android.material.navigation.NavigationView;
 
 public class ListarMisTruequesActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
-    private ArticuloTruequeViewModel truequeArticuloViewModel;
+    //private ArticuloTruequeViewModel truequeArticuloViewModel;
     private TruequeViewModel truequeViewModel;
     private ArticuloViewModel articuloViewModel;
 
@@ -43,15 +43,15 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
         setContentView(R.layout.activity_listar_mis_trueques);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerViewMisTruequesDisponibles);
-        final MisTruequesListAdapter adapter = new MisTruequesListAdapter(new MisTruequesListAdapter.ArticuloDiff());
-        recyclerView.setAdapter(adapter);
+        final ArticuloListAdapter adapterA = new ArticuloListAdapter(new ArticuloListAdapter.ArticuloDiff());
+        recyclerView.setAdapter(adapterA);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        truequeArticuloViewModel = new ViewModelProvider(this, new ArticuloTruequeFactory(getApplication(),"")).get(ArticuloTruequeViewModel.class);
+        articuloViewModel = new ViewModelProvider(this, new MisTruequesFactory(getApplication())).get(ArticuloViewModel.class);
 
-        truequeArticuloViewModel.findMisTruequesDisponibles().observe(this, articulos -> {
+        articuloViewModel.findTruequesDisponibles().observe(this, articulos -> {
 
-            adapter.submitList(articulos);
+            adapterA.submitList(articulos);
         });
 
 
@@ -63,13 +63,6 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
             adapterT.submitList(trueques);
         });
 
-        final ArticuloListAdapter adapterA = new ArticuloListAdapter(new ArticuloListAdapter.ArticuloDiff());
-        articuloViewModel = new ViewModelProvider(this, new ArticuloFactory(getApplication())).get(ArticuloViewModel.class);
-
-        articuloViewModel.getArticulos().observe(this, articulos -> {
-
-            adapterA.submitList(articulos);
-        });
 
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
@@ -79,7 +72,7 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
         });
 
-        adapter.setOnItemClickListener(new MisTruequesListAdapter.OnItemClickListener() {
+        adapterA.setOnItemClickListener(new ArticuloListAdapter.OnItemClickListener() {
             @Override
             public void onItemDelete(Articulo articulo) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListarMisTruequesActivity.this);
@@ -90,8 +83,10 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         articulo.setEstado("d");
-                        articuloViewModel.update(articulo);
+                        Log.d("articuloID",articulo.getId()+"");
                         truequeViewModel.deleteTruequeByArticuloId(articulo.getId());
+                        articuloViewModel.update(articulo);
+
                         //articuloViewModel.delete(articulo);
                         Toast.makeText(getApplicationContext(), "Se ha eliminado el trueque", Toast.LENGTH_LONG).show();
                     }
@@ -185,23 +180,32 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
         }
     }
 
-    
+
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.nav_trueque:
-                Toast.makeText(getApplicationContext(), R.string.menu_trueque, Toast.LENGTH_LONG).show();
+            case R.id.nav_usuario:
                 break;
+            case R.id.nav_trueque:
+                Intent intentT = new Intent(ListarMisTruequesActivity.this, ListarMisTruequesActivity.class);
+
+                startActivity(intentT);                break;
             case R.id.nav_perfil:
-                Toast.makeText(getApplicationContext(), R.string.menu_perfil, Toast.LENGTH_LONG).show();
+                Intent intentP = new Intent(ListarMisTruequesActivity.this, AgregarUsuarioActivity.class);
+
+                startActivity(intentP);
                 break;
             case R.id.nav_articulo:
-                Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();
+                Intent intentLU = new Intent(ListarMisTruequesActivity.this, ListarArticuloActivity.class);
+
+
+                startActivity(intentLU);
+                //Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();
                 break;
             default:
-                throw new IllegalArgumentException("Opcion no existente");
+                throw new IllegalArgumentException("Opción no existente");
         }
 
         return true;

@@ -1,5 +1,15 @@
 package com.bit.revalorando;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -7,35 +17,30 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.widget.Toast;
-
+import com.bit.revalorando.entities.Articulo;
 import com.bit.revalorando.entities.Trueque;
+import com.bit.revalorando.models.ArticuloViewModel;
 import com.bit.revalorando.models.TruequeViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
-
-import com.bit.revalorando.entities.Articulo;
-import com.bit.revalorando.models.ArticuloViewModel;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-
-public class ListarArticuloActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ListarSeleccionActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private ArticuloViewModel articuloViewModel;
     private TruequeViewModel truequeViewModel;
 
+//    public static final String EXTRA_MSG_ID = "com.bit.revalorando.MSG_GUARDAR_ID";
+    public static final String EXTRA_MSG_NOMBRE = "com.bit.revalorando.MSG_GUARDAR_NOMBRE";
+    public static final String EXTRA_MSG_DESCRIPCION = "com.bit.revalorando.MSG_GUARDAR_DESCRIPCION";
+    public static final String EXTRA_MSG_FOTO = "com.bit.revalorando.MSG_GUARDAR_FOTO";
+
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     public static final int UPDATE_ARTICULO_REQ_CODE = 2;
-    public static final String EXTRA_MSG_ARTICULO_ID = "com.bit.revalorando.MSG_GUARDAR_ARTICULO_ID";
+    public static final String EXTRA_MSG_ARTICULO_ID = "com.bit.revalorando.MSG_GUARDAR_ID";
+
+    //public static final int EXTRA_MSG_ARTICULO_ID = -1;
 
     VariablesLogin vLogin = VariablesLogin.getInstance();
     public int idUsuario = vLogin.idUsuarioGlobal;
@@ -67,17 +72,27 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
         });
 
 
-        FloatingActionButton fab = findViewById(R.id.btnAgregar);
-        fab.setOnClickListener( view -> {
-            Intent intent = new Intent(ListarArticuloActivity.this, AgregarArticuloActivity.class);
-
-            startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
-        });
-
         adapter.setOnItemClickListener(new ArticuloListAdapter.OnItemClickListener() {
+
+            @Override
+            public void OnItemClick(Articulo articulo) {
+
+                Intent respuesta = new Intent();
+                /*
+                int id = getIntent().getIntExtra(EXTRA_MSG_ARTICULO_ID, -1);
+                if(id != -1){
+                    respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, id);
+                }*/
+                setResult(RESULT_OK, respuesta);
+                respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, articulo.getId());
+                finish();
+                Log.d("id nart oferta:", articulo.getId()+"");
+
+            }
+
             @Override
             public void onItemDelete(Articulo articulo) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListarArticuloActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
                 builder.setMessage(R.string.msg_borrar);
                 builder.setTitle(R.string.titulo_borrar);
 
@@ -99,21 +114,45 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
                 dialog.show();
 
             }
-
+/*
             @Override
             public void OnItemClick(Articulo articulo) {
-                Intent intent = new Intent(ListarArticuloActivity.this, AgregarArticuloActivity.class);
+
+
+                    Intent respuesta = new Intent();
+                    if(TextUtils.isEmpty("")){
+                        setResult(RESULT_CANCELED, respuesta);
+                    } else {
+                        /*
+                        String articulo = editTextNombre.getText().toString();
+                        String descripcion = editTextDescripcion.getText().toString();
+                        String url = editTextImagen.getText().toString();
+                        respuesta.putExtra(EXTRA_MSG_NOMBRE, articulo);
+                        respuesta.putExtra(EXTRA_MSG_DESCRIPCION, descripcion);
+                        respuesta.putExtra(EXTRA_MSG_FOTO, url);
+
+                        int id = getIntent().getIntExtra(EXTRA_MSG_ARTICULO_ID, -1);
+                        if(id != -1){
+                            respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, id);
+                        }
+                        setResult(RESULT_OK, respuesta);
+                    }
+                    Log.d("id art inter", EXTRA_MSG_ARTICULO_ID);
+                    finish();
+
+
+                Intent intent = new Intent(ListarSeleccionActivity.this, AgregarArticuloActivity.class);
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
 
                 startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
-            }
+            }*/
 
             @Override
             public void onItemPublicar(Articulo articulo) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListarArticuloActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
                 builder.setMessage("Desea publicar el artículo para ser intercambiado?");
                 builder.setTitle("Publicar el Artículo");
 
@@ -162,6 +201,14 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
         navigationView.setNavigationItemSelectedListener(this);
 
         navigationView.getMenu().findItem(R.id.nav_usuario).setTitle(vLogin.usuarioGlobal);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListarSeleccionActivity.super.onBackPressed();
+            }
+        });
+
 
 
 
@@ -218,16 +265,18 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             case R.id.nav_usuario:
                 break;
             case R.id.nav_trueque:
-                Intent intentT = new Intent(ListarArticuloActivity.this, ListarMisTruequesActivity.class);
-
+                Intent intentT = new Intent(ListarSeleccionActivity.this, ListarMisTruequesActivity.class);
+                finish();
                 startActivity(intentT);                break;
             case R.id.nav_perfil:
-                Intent intentP = new Intent(ListarArticuloActivity.this, AgregarUsuarioActivity.class);
+                Intent intentP = new Intent(ListarSeleccionActivity.this, AgregarUsuarioActivity.class);
+                finish();
 
                 startActivity(intentP);
                 break;
             case R.id.nav_articulo:
-                Intent intentLU = new Intent(ListarArticuloActivity.this, ListarArticuloActivity.class);
+                Intent intentLU = new Intent(ListarSeleccionActivity.this, ListarSeleccionActivity.class);
+                finish();
 
                 startActivity(intentLU);
                 //Toast.makeText(getApplicationContext(), R.string.menu_articulo, Toast.LENGTH_LONG).show();

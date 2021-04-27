@@ -18,12 +18,16 @@ public class ArticuloRepository {
     public int idUsuario = vLogin.idUsuarioGlobal;
 
     private LiveData<List<Articulo>> articulos;
+    public LiveData<List<Articulo>>  misTruequesDisponibles;
+
 
     public ArticuloRepository(Application application){
         AppDatabase db = AppDatabase.getInstance(application);
         articuloDao = db.articuloDao();
         //articulos = articuloDao.getAll();
         articulos = articuloDao.findMisArticulos(idUsuario);
+        misTruequesDisponibles = articuloDao.findMisTruequesDisponibles(vLogin.idUsuarioGlobal);
+
 
 
     }
@@ -31,6 +35,10 @@ public class ArticuloRepository {
     public LiveData<List<Articulo>> getArticulos(){
         return articulos;
     }
+
+
+    public LiveData<List<Articulo>> findMisTruequesDisponibles() { return misTruequesDisponibles; }
+
 
     public Articulo buscarArticulo(int id){
         Articulo articulo = null;

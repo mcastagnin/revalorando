@@ -13,8 +13,10 @@
         android:theme="@style/Theme.Revalorando">
         <activity android:name=".DescripcionArticuloActivity"></activity>
         <activity android:name=".AgregarArticuloActivity" />
+        <activity android:name=".OfertaActivity" />
         <activity android:name=".ListarArticuloActivity" />
         <activity android:name=".ListarMisTruequesActivity" />
+        <activity android:name=".ListarSeleccionActivity" />
         <activity android:name=".AgregarTruequeActivity" />
         <activity android:name=".ListarTruequeActivity" />
         <activity android:name=".ListarUsuarioActivity" />

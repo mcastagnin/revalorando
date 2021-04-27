@@ -107,10 +107,11 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
             public void OnItemClick(Articulo articulo) {
 
                 Intent intent = new Intent(ListarTruequeActivity.this, DescripcionArticuloActivity.class);
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
+                intent.putExtra(DescripcionArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
+                intent.putExtra(DescripcionArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
+                intent.putExtra(DescripcionArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
+                intent.putExtra(DescripcionArticuloActivity.EXTRA_MSG_ID, articulo.getId());
+                Log.d("articulo del listado",  ""+articulo.getId());
 
                 startActivity(intent);
                 /*Articulo art = arti;
