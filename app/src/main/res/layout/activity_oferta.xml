@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorverde"
-        android:text="DECIDIR OFERTA"
+        android:text="¿DESEAS ACEPTAR LA OFERTA?"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textIsSelectable="false"
@@ -125,6 +125,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewImagen2" />
 
+
         <Button
             android:id="@+id/btnRechazarOferta"
             android:layout_width="330dp"
@@ -132,7 +133,7 @@
             android:layout_margin="10dp"
             android:layout_marginTop="44dp"
             android:backgroundTint="@color/colorRojo"
-            android:text="¿DESEAS ACEPTAR LA OFERTA?"
+            android:text="RECHAZAR OFERTA"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

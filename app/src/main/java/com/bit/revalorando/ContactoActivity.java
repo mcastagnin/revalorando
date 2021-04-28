@@ -72,7 +72,7 @@ public class ContactoActivity extends OptionsMenuActivity {
 
         final Button btnWhatsapp = findViewById(R.id.btnWhastapp);
         btnWhatsapp.setOnClickListener(view -> {
-            String url = "https://api.whatsapp.com/send?phone="+telefono;
+            String url = "https://api.whatsapp.com/send?phone=+598"+telefono;
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse(url));
             startActivity(intent);
