@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Revalorando">
         <activity android:name=".DescripcionArticuloActivity"></activity>
+        <activity android:name=".ContactoActivity"></activity>
         <activity android:name=".AgregarArticuloActivity" />
         <activity android:name=".OfertaActivity" />
         <activity android:name=".ListarArticuloActivity" />

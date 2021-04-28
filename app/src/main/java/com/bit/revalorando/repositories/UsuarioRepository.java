@@ -38,4 +38,11 @@ public class UsuarioRepository {
 
         return user;
     }
+
+    public Usuario buscarUsuarioPorId(int id){
+        Usuario user = null;
+        user = usuarioDao.findById(id);
+
+        return user;
+    }
 }

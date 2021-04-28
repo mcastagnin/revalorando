@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorverde"
-        android:text="OFERTA"
+        android:text="DECIDIR OFERTA"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textIsSelectable="false"
@@ -29,24 +29,26 @@
         <ImageView
             android:id="@+id/textViewImagen1"
             android:layout_width="170dp"
-            android:layout_height="102dp"
+            android:layout_height="150dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="14dp"
             android:scaleType="centerCrop"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="53dp" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewArticulo1" />
 
         <ImageView
             android:id="@+id/textViewImagen2"
             android:layout_width="170dp"
-            android:layout_height="102dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="14dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/textViewImagen1"
-            tools:layout_editor_absoluteY="53dp" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewArticulo2" />
 
         <TextView
             android:id="@+id/textViewNombre1"
@@ -124,13 +126,13 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewImagen2" />
 
         <Button
-            android:id="@+id/btnDeclinarOferta"
+            android:id="@+id/btnRechazarOferta"
             android:layout_width="330dp"
             android:layout_height="70dp"
             android:layout_margin="10dp"
             android:layout_marginTop="44dp"
             android:backgroundTint="@color/colorRojo"
-            android:text="DECLINAR OFERTA"
+            android:text="¿DESEAS ACEPTAR LA OFERTA?"
             android:textColor="#FFFFFF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

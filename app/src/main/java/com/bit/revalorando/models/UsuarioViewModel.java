@@ -32,6 +32,11 @@ public class UsuarioViewModel extends AndroidViewModel {
         return usuario;
     }
 
+    public Usuario buscarUsuarioPorId(int id){
+        usuario = usuarioRepository.buscarUsuarioPorId(id);
+
+        return usuario;
+    }
 
     public void insert(Usuario usuario){
         usuarioRepository.insert(usuario);
