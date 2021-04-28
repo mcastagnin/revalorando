@@ -11,8 +11,10 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AgregarArticuloActivity extends OptionsMenuActivity {
@@ -27,6 +29,9 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
     private EditText editTextNombre;
     private EditText editTextDescripcion;
     private EditText editTextImagen;
+    private Spinner  spinnerCategoria;
+    private Spinner  spinnerCondicion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,20 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
         editTextDescripcion = findViewById(R.id.textViewIngresarDescripcion);
         editTextImagen = findViewById(R.id.textViewIngresarImagen);
 
+        spinnerCategoria = (Spinner) findViewById(R.id.spinnerIngresarCategoria);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.categoria_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategoria.setAdapter(adapter);
+
+        spinnerCondicion = (Spinner) findViewById(R.id.spinnerIngresarCondicion);
+
+        adapter = ArrayAdapter.createFromResource(this,
+                R.array.condicion_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCondicion.setAdapter(adapter);
+
         final Button btnAgregar = findViewById(R.id.btnGuardar);
         btnAgregar.setOnClickListener(view -> {
             Intent respuesta = new Intent();
@@ -46,6 +65,9 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
                 String articulo = editTextNombre.getText().toString();
                 String descripcion = editTextDescripcion.getText().toString();
                 String url = editTextImagen.getText().toString();
+                if(url.equals("")){
+                    url = "https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png";
+                }
                 respuesta.putExtra(EXTRA_MSG_NOMBRE, articulo);
                 respuesta.putExtra(EXTRA_MSG_DESCRIPCION, descripcion);
                 respuesta.putExtra(EXTRA_MSG_FOTO, url);
@@ -64,9 +86,14 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
         if(intent.hasExtra(EXTRA_MSG_ID)){
             editTextNombre.setText(intent.getStringExtra(EXTRA_MSG_NOMBRE));
             editTextDescripcion.setText(intent.getStringExtra(EXTRA_MSG_DESCRIPCION));
-            editTextImagen.setText(intent.getStringExtra(EXTRA_MSG_FOTO));
+            if(intent.getStringExtra(EXTRA_MSG_FOTO).equals("https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png")){
+                editTextImagen.setText("");
+            }
+            else{
+                editTextImagen.setText(intent.getStringExtra(EXTRA_MSG_FOTO));
+            }
         } else {
-            editTextImagen.setText("https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png");
+            //editTextImagen.setText("https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png");
         }
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);

@@ -14,6 +14,7 @@
         <activity android:name=".DescripcionArticuloActivity"></activity>
         <activity android:name=".ContactoActivity"></activity>
         <activity android:name=".AgregarArticuloActivity" />
+        <activity android:name=".ListarOfertasRecibidasActivity" />
         <activity android:name=".OfertaActivity" />
         <activity android:name=".ListarArticuloActivity" />
         <activity android:name=".ListarMisTruequesActivity" />

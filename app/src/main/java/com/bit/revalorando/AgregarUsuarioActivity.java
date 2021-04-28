@@ -55,14 +55,11 @@ public class AgregarUsuarioActivity extends AppCompatActivity {
         editTextNumero = findViewById(R.id.textViewIngresarNumero);
         editTextLocalidad = findViewById(R.id.textViewIngresarLocalidad);
         spinnerDepartamento = (Spinner) findViewById(R.id.textViewIngresarDepartamento);
-// Create an ArrayAdapter using the string array and a default spinner layout
+
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.departamentos_array, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        R.array.departamentos_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
         spinnerDepartamento.setAdapter(adapter);
-       // editTextDepartamento = findViewById(R.id.textViewIngresarDepartamento);
 
 
 

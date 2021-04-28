@@ -19,6 +19,8 @@ public class ArticuloRepository {
 
     private LiveData<List<Articulo>> articulos;
     public LiveData<List<Articulo>>  misTruequesDisponibles;
+    public LiveData<List<Articulo>>  misTruequesOfertados;
+
 
 
     public ArticuloRepository(Application application){
@@ -27,6 +29,7 @@ public class ArticuloRepository {
         //articulos = articuloDao.getAll();
         articulos = articuloDao.findMisArticulos(idUsuario);
         misTruequesDisponibles = articuloDao.findMisTruequesDisponibles(vLogin.idUsuarioGlobal);
+        misTruequesOfertados = articuloDao.findMisTruequesOfertados(vLogin.idUsuarioGlobal);
 
 
 
@@ -38,6 +41,9 @@ public class ArticuloRepository {
 
 
     public LiveData<List<Articulo>> findMisTruequesDisponibles() { return misTruequesDisponibles; }
+
+    public LiveData<List<Articulo>> findMisTruequesOfertados() { return misTruequesOfertados; }
+
 
 
     public Articulo buscarArticulo(int id){

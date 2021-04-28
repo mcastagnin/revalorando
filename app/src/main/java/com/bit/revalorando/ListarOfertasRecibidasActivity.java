@@ -16,8 +16,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bit.revalorando.entities.Articulo;
-import com.bit.revalorando.entities.Trueque;
-import com.bit.revalorando.models.ArticuloTruequeViewModel;
 import com.bit.revalorando.models.ArticuloViewModel;
 import com.bit.revalorando.models.TruequeViewModel;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -25,7 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 
-public class ListarMisTruequesActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ListarOfertasRecibidasActivity extends OptionsMenuActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     //private ArticuloTruequeViewModel truequeArticuloViewModel;
     private TruequeViewModel truequeViewModel;
@@ -40,16 +38,16 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_mis_trueques);
+        setContentView(R.layout.activity_listar_ofertas_recibidas);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewMisTruequesDisponibles);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewMisOfertasRecibidas);
         final MisTruequesListAdapter adapterA = new MisTruequesListAdapter(new ArticuloListAdapter.ArticuloDiff());
         recyclerView.setAdapter(adapterA);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         articuloViewModel = new ViewModelProvider(this, new MisTruequesFactory(getApplication())).get(ArticuloViewModel.class);
 
-        articuloViewModel.findTruequesDisponibles().observe(this, articulos -> {
+        articuloViewModel.findTruequesOfertados().observe(this, articulos -> {
 
             adapterA.submitList(articulos);
         });
@@ -67,7 +65,7 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
 
         FloatingActionButton fab = findViewById(R.id.btnAgregar);
         fab.setOnClickListener( view -> {
-            Intent intent = new Intent(ListarMisTruequesActivity.this, AgregarArticuloActivity.class);
+            Intent intent = new Intent(ListarOfertasRecibidasActivity.this, AgregarArticuloActivity.class);
 
             startActivityForResult(intent, NEW_ARTICULO_REQ_CODE);
         });
@@ -75,7 +73,7 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
         adapterA.setOnItemClickListener(new MisTruequesListAdapter.OnItemClickListener() {
             @Override
             public void onItemDelete(Articulo articulo) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListarMisTruequesActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarOfertasRecibidasActivity.this);
                 builder.setMessage(R.string.msg_borrar);
                 builder.setTitle("Eliminar Trueque disponible");
 
@@ -105,13 +103,16 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
 
             @Override
             public void OnItemClick(Articulo articulo) {
-                Intent intent = new Intent(ListarMisTruequesActivity.this, AgregarArticuloActivity.class);
+                Intent intent = new Intent(ListarOfertasRecibidasActivity.this, OfertaActivity.class);
+                /*
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
+*/finish();
+               startActivity(intent);
 
-                startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
+
             }
 
             @Override
@@ -189,16 +190,16 @@ public class ListarMisTruequesActivity extends OptionsMenuActivity implements Na
             case R.id.nav_usuario:
                 break;
             case R.id.nav_trueque:
-                Intent intentT = new Intent(ListarMisTruequesActivity.this, ListarMisTruequesActivity.class);
+                Intent intentT = new Intent(ListarOfertasRecibidasActivity.this, ListarOfertasRecibidasActivity.class);
 
                 startActivity(intentT);                break;
             case R.id.nav_perfil:
-                Intent intentP = new Intent(ListarMisTruequesActivity.this, AgregarUsuarioActivity.class);
+                Intent intentP = new Intent(ListarOfertasRecibidasActivity.this, AgregarUsuarioActivity.class);
 
                 startActivity(intentP);
                 break;
             case R.id.nav_articulo:
-                Intent intentLU = new Intent(ListarMisTruequesActivity.this, ListarArticuloActivity.class);
+                Intent intentLU = new Intent(ListarOfertasRecibidasActivity.this, ListarArticuloActivity.class);
 
 
                 startActivity(intentLU);

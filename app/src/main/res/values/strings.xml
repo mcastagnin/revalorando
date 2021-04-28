@@ -45,6 +45,7 @@
     <string name="menu_articulo">Mis artículos</string>
     <string name="menu_otros">Otros</string>
     <string name="menu_usuario" />
+    <string name="menu_oferta">Ofertas recibidas</string>
 
     <string-array name="departamentos_array">
         <item>Artigas</item>
@@ -66,6 +67,30 @@
         <item>Soriano</item>
         <item>Tacuarembo</item>
         <item>Treinta y tres</item>
+    </string-array>
+
+    <string-array name="categoria_array">
+        <item>Tecnología</item>
+        <item>Accesorios para Vehículos</item>
+        <item>Salud y Equipamiento Médico</item>
+        <item>Belleza y Cuidado Personal</item>
+        <item>Deportes y Fitness</item>
+        <item>Hogar y Muebles</item>
+        <item>Electrodomésticos</item>
+        <item>Herramientas</item>
+        <item>Construcción</item>
+        <item>Industrias y Oficinas</item>
+        <item>Moda</item>
+        <item>Juguetes</item>
+        <item>Bebés</item>
+        <item>Vehículos</item>
+        <item>Inmuebles</item>
+        <item>Productos Sustentadas</item>
+    </string-array>
+
+    <string-array name="condicion_array">
+        <item>Usado</item>
+        <item>Nuevo</item>
     </string-array>
 
 

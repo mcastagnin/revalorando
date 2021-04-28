@@ -188,6 +188,10 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
                 Intent intentT = new Intent(ListarTruequeActivity.this, ListarMisTruequesActivity.class);
 
                 startActivity(intentT);                break;
+            case R.id.nav_oferta:
+                Intent intentO = new Intent(ListarTruequeActivity.this, ListarOfertasRecibidasActivity.class);
+
+                startActivity(intentO);                break;
             case R.id.nav_perfil:
                 Intent intentP = new Intent(ListarTruequeActivity.this, AgregarUsuarioActivity.class);
 

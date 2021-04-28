@@ -8,6 +8,8 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -70,6 +72,8 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
 
             adapterT.submitList(trueques);
         });
+
+
 
 
         adapter.setOnItemClickListener(new ArticuloListAdapter.OnItemClickListener() {
