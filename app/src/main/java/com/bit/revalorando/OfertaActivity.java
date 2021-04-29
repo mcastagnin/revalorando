@@ -125,9 +125,9 @@ public class OfertaActivity extends OptionsMenuActivity {
 
 
         Articulo articulo1 = new Articulo();
-        articulo1 = articuloViewModel.getArticulo(4);
+        articulo1 = articuloViewModel.getArticulo(39);
         Articulo articulo2 = new Articulo();
-        articulo2 = articuloViewModel.getArticulo(13);
+        articulo2 = articuloViewModel.getArticulo(47);
         Log.d("nombre art1", articulo1.getNombre());
 
         Intent intent = getIntent();

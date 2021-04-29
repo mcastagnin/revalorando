@@ -64,8 +64,7 @@ public class OptionsMenuActivity extends AppCompatActivity {
     private void acercaDe(){
         DialogFragment dialog = new AcercaDeDialogFragment();
         dialog.show(getSupportFragmentManager(),"AcercaDeDialogFragment");
-        Intent intent = new Intent(OptionsMenuActivity.this, OfertaActivity.class);
-        startActivity(intent);
+
     }
     private void logout(){
         VariablesLogin vLogin = VariablesLogin.getInstance();

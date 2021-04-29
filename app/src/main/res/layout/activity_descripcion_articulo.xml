@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
+<LinearLayout android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <include android:id="@+id/toolbar" layout="@layout/toolbar"/>
 
@@ -14,21 +14,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorverde"
-        android:text="ARTÍCULO"
+        android:text="Artículo"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textIsSelectable="false"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+
+        />
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="89dp"
+        app:srcCompat="@drawable/logo"
+        android:layout_marginTop="10dp"
+        />
 
     <ImageView
         android:id="@+id/imagenArticulo"
-        android:layout_width="215dp"
-        android:layout_height="163dp"
-        android:layout_marginStart="92dp"
+        android:layout_width="290dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="60dp"
         android:layout_marginLeft="92dp"
-        android:layout_marginTop="50dp"
-        android:scaleType="centerCrop"
-        />
+        android:layout_marginTop="30dp"
+        android:scaleType="centerCrop" />
 
     <TextView
         android:id="@+id/textViewIngresarNombre"

@@ -122,7 +122,12 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
         if (resultCode == RESULT_OK){
             int idArticulo2 = data.getIntExtra(ListarArticuloActivity.EXTRA_MSG_ARTICULO_ID, -1);
             if (idArticulo2 == -1 ){
-                Toast.makeText(getApplicationContext(), "No se ha realizado la oferta.", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "No se ha realizado la oferta.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Se ha realizado la oferta.", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(DescripcionArticuloActivity.this, ListarTruequeActivity.class);
+                startActivity(intent);
+                finish();
+
             }
 
 

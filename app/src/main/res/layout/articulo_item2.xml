@@ -8,7 +8,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view_articulo2"
         android:layout_width="match_parent"
-        android:layout_height="359dp"
+        android:layout_height="530dp"
         android:layout_margin="5dp"
         app:cardBackgroundColor="#FFFFFF"
         app:cardCornerRadius="12dp"
@@ -18,20 +18,32 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayoutItemArticulo2"
-            android:layout_width="391dp"
-            android:layout_height="359dp"
+            android:layout_width="400dp"
+            android:layout_height="518dp"
             android:padding="16dp">
 
             <ImageView
-                android:id="@+id/imagenArticulo"
-                android:layout_width="159dp"
-                android:layout_height="133dp"
+                android:id="@+id/imageViewLogo"
+                android:layout_width="191dp"
+                android:layout_height="144dp"
                 android:layout_marginStart="92dp"
                 android:layout_marginLeft="92dp"
-                android:layout_marginTop="4dp"
+                app:srcCompat="@drawable/logo"
                 android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imagenArticulo"
+                android:layout_width="228dp"
+                android:layout_height="152dp"
+                android:layout_marginTop="32dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageViewLogo" />
 
             <TextView
                 android:id="@+id/textViewNombreArticulo"
@@ -60,7 +72,6 @@
 
 
     </androidx.cardview.widget.CardView>
-
 
 
 </LinearLayout>
