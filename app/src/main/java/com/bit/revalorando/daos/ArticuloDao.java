@@ -36,11 +36,11 @@ public interface ArticuloDao {
 
     @Query("SELECT * FROM articulo " +
             "INNER JOIN trueque ON trueque.idArticulo1 = articulo.id " +
-            "WHERE articulo.nombre LIKE  '%'||:nombreArticulo ||'%' AND trueque.idArticulo2= -1 AND trueque.idUsuario1 != :idUsuario")
+            "WHERE articulo.nombre LIKE  '%'||:nombreArticulo ||'%' AND trueque.idArticulo2= -1 AND trueque.idUsuario1 != :idUsuario ORDER BY trueque.id DESC")
     LiveData<List<Articulo>> findTruequesDisponibles(String nombreArticulo, int idUsuario);
 
-    @Query("SELECT * FROM articulo " +
-            "INNER JOIN trueque ON trueque.idArticulo1 = articulo.id " +
+    @Query("SELECT * FROM trueque " +
+            "INNER JOIN articulo ON trueque.idArticulo1 = articulo.id " +
             "WHERE trueque.idArticulo2= -1 AND trueque.idUsuario1 == :idUsuario")
     LiveData<List<Articulo>> findMisTruequesDisponibles(int idUsuario);
 
