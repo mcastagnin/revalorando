@@ -104,6 +104,8 @@ public class ListarOfertasRecibidasActivity extends OptionsMenuActivity implemen
             @Override
             public void OnItemClick(Articulo articulo) {
                 Intent intent = new Intent(ListarOfertasRecibidasActivity.this, OfertaActivity.class);
+                intent.putExtra(OfertaActivity.EXTRA_MSG_ID, articulo.getId());
+                Log.d("id?", articulo.getId()+"");
                 /*
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());

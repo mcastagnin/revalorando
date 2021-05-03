@@ -16,6 +16,7 @@ public class TruequeViewModel extends AndroidViewModel {
 
     private TruequeRepository truequeRepository;
     private final LiveData<List<Trueque>> trueques;
+    private Trueque trueque;
 
     public TruequeViewModel(Application application){
         super(application);
@@ -38,11 +39,18 @@ public class TruequeViewModel extends AndroidViewModel {
     public void delete(Trueque trueque){
         truequeRepository.delete(trueque);
     }
+
+    public Trueque getTrueque(int id){
+        trueque = truequeRepository.buscarTrueque(id);
+
+        return trueque;
+    }
+
     public void deleteTruequeByArticuloId(int id){
         truequeRepository.deleteTruequeByArticuloId(id);
     }
-    public void updateTruequeByArticuloId(int idArticulo2, int idUsuario2, int idArticulo1){
-        truequeRepository.updateTruequeByArticuloId(idArticulo2,idUsuario2,idArticulo1);
+    public void updateTruequeByTruequeId(int idArticulo2, int idUsuario2, int idTrueque){
+        truequeRepository.updateTruequeByTruequeId(idArticulo2,idUsuario2,idTrueque);
     }
 }
 

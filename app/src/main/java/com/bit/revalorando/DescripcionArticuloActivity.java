@@ -33,7 +33,8 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
     public static final String EXTRA_MSG_DESCRIPCION = "com.bit.revalorando.MSG_GUARDAR_DESCRIPCION";
     public static final String EXTRA_MSG_FOTO = "com.bit.revalorando.MSG_GUARDAR_FOTO";
     public static final String EXTRA_MSG_ID_USUARIO = "com.bit.revalorando.MSG_GUARDAR_ID_USUARIO";
-
+    public static final String EXTRA_MSG_TRUEQUE_ID = "com.bit.revalorando.MSG_GUARDAR_ID_TRUEQUE";
+    private int  idTrueque = -1;
     private static final int OFERTAR_TRUEQUE_REQ_CODE = 1;
 
     private TextView editTextNombre;
@@ -75,12 +76,20 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
 
         });
 
+
+
         // editTextImagen = findViewById(R.id.textViewIngresarImagen);
 
         final Button btnIntercambiar = findViewById(R.id.btnIntercambiar);
         btnIntercambiar.setOnClickListener(view -> {
 
+            Intent intentD = getIntent();
+
+            int idTrueque = intentD.getIntExtra(EXTRA_MSG_TRUEQUE_ID, -1);
+
             Intent intent = new Intent(DescripcionArticuloActivity.this,ListarSeleccionActivity.class);
+            intent.putExtra(EXTRA_MSG_ID, idTrueque);
+
 
             //intent.putExtra(ListarSeleccionActivity.EXTRA_MSG_ARTICULO_ID, ListarSeleccionActivity.EXTRA_MSG_ID);
 
@@ -103,6 +112,8 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
             //editTextImagen.setText("https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png");
         }
 
+        idTrueque = intent.getIntExtra(EXTRA_MSG_ID,-1);
+
         MaterialToolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setSubtitle(R.string.app_subtitle);
@@ -120,10 +131,12 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK){
-            int idArticulo2 = data.getIntExtra(ListarArticuloActivity.EXTRA_MSG_ARTICULO_ID, -1);
+            int idArticulo2 = data.getIntExtra(ListarSeleccionActivity.EXTRA_MSG_ARTICULO_ID, -1);
+            Log.d("id art. 2 al regresar:", data.getIntExtra(ListarSeleccionActivity.EXTRA_MSG_ARTICULO_ID, -1) +"");
+            Log.d("truquei id alreg:", idTrueque+"");
+
             if (idArticulo2 == -1 ){
-                //Toast.makeText(getApplicationContext(), "No se ha realizado la oferta.", Toast.LENGTH_LONG).show();
-                Toast.makeText(getApplicationContext(), "Se ha realizado la oferta.", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "No se ha realizado la oferta.", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(DescripcionArticuloActivity.this, ListarTruequeActivity.class);
                 startActivity(intent);
                 finish();
@@ -157,7 +170,8 @@ public class DescripcionArticuloActivity extends OptionsMenuActivity {
             articulo.setEstado("n");
             articuloViewModel.update(articulo);
 Log.d("idAsr2 - idusu2, idArt1", ""+ articulo.getId()+"  "+articulo.getIdUsuario()+"  "+data.getIntExtra(DescripcionArticuloActivity.EXTRA_MSG_ID,-1));
-            truequeViewModel.updateTruequeByArticuloId(articulo.getId(),articulo.getIdUsuario(), data.getIntExtra(DescripcionArticuloActivity.EXTRA_MSG_ID,-1));
+            truequeViewModel.updateTruequeByTruequeId(articulo.getId(),articulo.getIdUsuario(), idTrueque);
+            Toast.makeText(getApplicationContext(), "Se ha realizado la oferta.", Toast.LENGTH_LONG).show();
 
 
 

@@ -33,14 +33,17 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
     private ArticuloViewModel articuloViewModel;
     private TruequeViewModel truequeViewModel;
 
-//    public static final String EXTRA_MSG_ID = "com.bit.revalorando.MSG_GUARDAR_ID";
+    public static final String EXTRA_MSG_ID = "com.bit.revalorando.MSG_GUARDAR_ID";;
     public static final String EXTRA_MSG_NOMBRE = "com.bit.revalorando.MSG_GUARDAR_NOMBRE";
     public static final String EXTRA_MSG_DESCRIPCION = "com.bit.revalorando.MSG_GUARDAR_DESCRIPCION";
     public static final String EXTRA_MSG_FOTO = "com.bit.revalorando.MSG_GUARDAR_FOTO";
+    public static final String EXTRA_MSG_TRUEQUE_ID = "com.bit.revalorando.MSG_GUARDAR_TRUEQUE_ID";;
+    private int idTrueque = -1;
+
 
     public static final int NEW_ARTICULO_REQ_CODE = 1;
     public static final int UPDATE_ARTICULO_REQ_CODE = 2;
-    public static final String EXTRA_MSG_ARTICULO_ID = "com.bit.revalorando.MSG_GUARDAR_ID";
+    public static final String EXTRA_MSG_ARTICULO_ID = "com.bit.revalorando.MSG_GUARDAR_ARTICULO_ID";
 
     //public static final int EXTRA_MSG_ARTICULO_ID = -1;
 
@@ -50,52 +53,56 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listar_articulo);
+        setContentView(R.layout.activity_listar_seleccion_articulos);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerViewArticulos);
-        final ArticuloListAdapter adapter = new ArticuloListAdapter(new ArticuloListAdapter.ArticuloDiff());
-        recyclerView.setAdapter(adapter);
+        RecyclerView recyclerView = findViewById(R.id.recyclerViewSeleccionArticulos);
+        final MisTruequesListAdapter adapterA = new MisTruequesListAdapter(new ArticuloListAdapter.ArticuloDiff());
+        recyclerView.setAdapter(adapterA);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        articuloViewModel = new ViewModelProvider(this, new ArticuloFactory(getApplication())).get(ArticuloViewModel.class);
+        articuloViewModel = new ViewModelProvider(this, new MisTruequesFactory(getApplication())).get(ArticuloViewModel.class);
 
         articuloViewModel.getArticulos().observe(this, articulos -> {
 
-            adapter.submitList(articulos);
+            adapterA.submitList(articulos);
         });
 
 
-        final TruequeListAdapter adapterT = new TruequeListAdapter(new TruequeListAdapter.TruequeDiff());
-        truequeViewModel = new ViewModelProvider(this, new TruequeFactory(getApplication())).get(TruequeViewModel.class);
+        idTrueque = getIntent().getIntExtra(EXTRA_MSG_TRUEQUE_ID, -1);
 
-        truequeViewModel.getTrueques().observe(this, trueques -> {
+        //EXTRA_MSG_ID = getIntent().getIntExtra(EXTRA_MSG_ID, -1);
+/*
+        Button btnPublicar= findViewById(R.id.buttonPublicar);
+        btnPublicar.setVisibility(View.GONE);
 
-            adapterT.submitList(trueques);
-        });
+        ImageView iBtnDelete = findViewById(R.id.imageButtonDelete);
+        iBtnDelete.setVisibility(View.GONE);
+*/
 
-
-
-
-        adapter.setOnItemClickListener(new ArticuloListAdapter.OnItemClickListener() {
+        adapterA.setOnItemClickListener(new MisTruequesListAdapter.OnItemClickListener() {
 
             @Override
             public void OnItemClick(Articulo articulo) {
 
                 Intent respuesta = new Intent();
+
                 /*
-                int id = getIntent().getIntExtra(EXTRA_MSG_ARTICULO_ID, -1);
                 if(id != -1){
-                    respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, id);
+                    respuesta.putExtra(EXTRA_MSG_ID, id);
                 }*/
                 setResult(RESULT_OK, respuesta);
                 respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, articulo.getId());
+                respuesta.putExtra(EXTRA_MSG_TRUEQUE_ID, idTrueque);
+
+                //respuesta.putExtra(EXTRA_MSG_ID, );
                 finish();
-                Log.d("id nart oferta:", articulo.getId()+"");
+                //Log.d("id nart oferta:", articulo.getId()+"");
 
             }
 
             @Override
             public void onItemDelete(Articulo articulo) {
+                /*
                 AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
                 builder.setMessage(R.string.msg_borrar);
                 builder.setTitle(R.string.titulo_borrar);
@@ -115,7 +122,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
                 });
 
                 AlertDialog dialog = builder.create();
-                dialog.show();
+                dialog.show();*/
 
             }
 /*
@@ -156,7 +163,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
 
             @Override
             public void onItemPublicar(Articulo articulo) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
                 builder.setMessage("Desea publicar el artículo para ser intercambiado?");
                 builder.setTitle("Publicar el Artículo");
 
@@ -188,7 +195,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
                 });
 
                 AlertDialog dialog = builder.create();
-                dialog.show();
+                dialog.show();*/
             }
         });
         
@@ -217,7 +224,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
 
 
     }
-
+/*
     public void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -229,9 +236,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
             articulo.setCategoria(1);
             articulo.setEstado("d");
 
-            /*articulo.setCategoria(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_CATEGORIA,0));
-            articulo.setCondicion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_CONDICION));
-            articulo.setEstado(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_ESTADO));*/
+
             articulo.setIdUsuario(idUsuario);
             articuloViewModel.insert(articulo);
 
@@ -258,7 +263,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
         } else {
             Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
         }
-    }
+    }*/
 
 
 

@@ -39,7 +39,12 @@ public class TruequeRepository {
         });
     }
 
+    public Trueque buscarTrueque(int id){
+        Trueque trueque = null;
+        trueque = truequeDao.findById(id);
 
+        return trueque;
+    }
 
     public void deleteTruequeByArticuloId(int id){
         AppDatabase.databaseWriteExecutor.execute(() -> {
@@ -47,9 +52,9 @@ public class TruequeRepository {
         });
     }
 
-    public void updateTruequeByArticuloId(int idArticulo2, int idUsuario2, int idArticulo1){
+    public void updateTruequeByTruequeId(int idArticulo2, int idUsuario2, int idTrueque){
         AppDatabase.databaseWriteExecutor.execute(() -> {
-            truequeDao.updateTruequeByArticuloId(idArticulo2,idUsuario2,idArticulo1);
+            truequeDao.updateTruequeByTruequeId(idArticulo2,idUsuario2,idTrueque);
         });
     }
 

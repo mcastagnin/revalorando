@@ -41,15 +41,15 @@ public interface ArticuloDao {
 
     @Query("SELECT * FROM trueque " +
             "INNER JOIN articulo ON trueque.idArticulo1 = articulo.id " +
-            "WHERE trueque.idArticulo2= -1 AND trueque.idUsuario1 == :idUsuario")
+            "WHERE trueque.idArticulo2= -1 AND trueque.idUsuario1 == :idUsuario ORDER BY trueque.id DESC")
     LiveData<List<Articulo>> findMisTruequesDisponibles(int idUsuario);
 
     @Query("SELECT * FROM articulo " +
             "INNER JOIN trueque ON trueque.idArticulo1 = articulo.id " +
-            "WHERE trueque.idArticulo2 != -1 AND trueque.estado LIKE 'p' AND trueque.idUsuario1 == :idUsuario")
+            "WHERE trueque.idArticulo2 != -1 AND trueque.estado LIKE 'p' AND trueque.idUsuario1 == :idUsuario ORDER BY trueque.id DESC")
     LiveData<List<Articulo>> findMisTruequesOfertados(int idUsuario);
 
     @Query("SELECT * FROM articulo " +
-            "WHERE idUsuario =:idUsuario AND estado LIKE 'd'")
+            "WHERE idUsuario =:idUsuario AND estado LIKE 'd' ORDER BY id DESC")
     LiveData<List<Articulo>> findMisArticulos(int idUsuario);
 }

@@ -19,7 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bit.revalorando.entities.Articulo;
+import com.bit.revalorando.entities.Trueque;
 import com.bit.revalorando.models.ArticuloViewModel;
+import com.bit.revalorando.models.TruequeViewModel;
 import com.bit.revalorando.repositories.ArticuloRepository;
 import com.bit.revalorando.repositories.UsuarioRepository;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -39,6 +41,7 @@ public class OfertaActivity extends OptionsMenuActivity {
     VariablesLogin vLogin = VariablesLogin.getInstance();
     public int idUsuario = vLogin.idUsuarioGlobal;
     private ArticuloViewModel articuloViewModel;
+    private TruequeViewModel truequeViewModel;
 
 
     private TextView tvNombre1;
@@ -61,6 +64,15 @@ public class OfertaActivity extends OptionsMenuActivity {
             adapter.submitList(articulos);
         });
 
+        final TruequeListAdapter adapterT = new TruequeListAdapter(new TruequeListAdapter.TruequeDiff());
+        truequeViewModel = new ViewModelProvider(this, new TruequeFactory(getApplication())).get(TruequeViewModel.class);
+
+        truequeViewModel.getTrueques().observe(this, trueques -> {
+
+            adapterT.submitList(trueques);
+
+        });
+
         tvNombre1 = findViewById(R.id.textViewNombre1);
         tvDescripcion1 = findViewById(R.id.textViewDescripcion1);
         imagenView1 = findViewById(R.id.textViewImagen1);
@@ -81,7 +93,13 @@ public class OfertaActivity extends OptionsMenuActivity {
             builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
+                    Trueque trueque = truequeViewModel.getTrueque(getIntent().getIntExtra(EXTRA_MSG_ID,-1));
+                    trueque.setEstado("f");
+                    truequeViewModel.update(trueque);
+
                     Intent intent = new Intent(OfertaActivity.this, ContactoActivity.class);
+                    intent.putExtra(ContactoActivity.EXTRA_MSG_ID, trueque.getIdUsuario2());
                     startActivity(intent);
                     finish();                }
             });
@@ -108,6 +126,7 @@ public class OfertaActivity extends OptionsMenuActivity {
             builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
+
                     Intent intent = new Intent(OfertaActivity.this, ListarTruequeActivity.class);
                     startActivity(intent);
                     finish();           }
@@ -124,10 +143,12 @@ public class OfertaActivity extends OptionsMenuActivity {
         });
 
 
-        Articulo articulo1 = new Articulo();
-        articulo1 = articuloViewModel.getArticulo(39);
-        Articulo articulo2 = new Articulo();
-        articulo2 = articuloViewModel.getArticulo(47);
+        Trueque trueque = truequeViewModel.getTrueque(getIntent().getIntExtra(EXTRA_MSG_ID,-1));
+
+        Articulo articulo1 = articuloViewModel.getArticulo(trueque.getIdArticulo1());
+        //articulo1 = articuloViewModel.getArticulo(39);
+        Articulo articulo2 = articuloViewModel.getArticulo(trueque.getIdArticulo2());
+       // articulo2 = articuloViewModel.getArticulo(47);
         Log.d("nombre art1", articulo1.getNombre());
 
         Intent intent = getIntent();
