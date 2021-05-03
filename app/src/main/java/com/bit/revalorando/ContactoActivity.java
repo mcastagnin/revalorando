@@ -61,7 +61,7 @@ public class ContactoActivity extends OptionsMenuActivity {
 
 
        Usuario usuario = new Usuario();
-       usuario = usuarioViewModel.buscarUsuarioPorId(2);
+       usuario = usuarioViewModel.buscarUsuarioPorId(getIntent().getIntExtra(EXTRA_MSG_ID,-1));
        direccion = ""+ usuario.getDireccion() + " Nº " + usuario.getNumero() + " - " + usuario.getLocalidad() + " - " + usuario.getDepartamento() + " - Uruguay";
        telefono = usuario.getTelefono();
 

@@ -84,19 +84,41 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
             @Override
             public void OnItemClick(Articulo articulo) {
 
-                Intent respuesta = new Intent();
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
+                builder.setMessage("Desea ofertar con el artículo seleccionado?");
+                builder.setTitle("Oferta");
+
+                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+
+                        Intent respuesta = new Intent();
 
                 /*
                 if(id != -1){
                     respuesta.putExtra(EXTRA_MSG_ID, id);
                 }*/
-                setResult(RESULT_OK, respuesta);
-                respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, articulo.getId());
-                respuesta.putExtra(EXTRA_MSG_TRUEQUE_ID, idTrueque);
+                        setResult(RESULT_OK, respuesta);
+                        respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, articulo.getId());
+                        respuesta.putExtra(EXTRA_MSG_TRUEQUE_ID, idTrueque);
 
-                //respuesta.putExtra(EXTRA_MSG_ID, );
-                finish();
-                //Log.d("id nart oferta:", articulo.getId()+"");
+                        //respuesta.putExtra(EXTRA_MSG_ID, );
+                        finish();
+                        //Log.d("id nart oferta:", articulo.getId()+"");
+
+                }
+                });
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
+
 
             }
 

@@ -127,6 +127,22 @@ public class OfertaActivity extends OptionsMenuActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
 
+
+
+                    Trueque trueque = truequeViewModel.getTrueque(getIntent().getIntExtra(EXTRA_MSG_ID,-1));
+
+                    Articulo articulo = articuloViewModel.getArticulo(trueque.getIdArticulo2());
+                    articulo.setEstado("d");
+                    articuloViewModel.update(articulo);
+
+
+                    trueque.setIdArticulo2(-1);
+                    trueque.setIdUsuario2(-1);
+                    trueque.setEstado("d");
+
+                    truequeViewModel.update(trueque);
+
+
                     Intent intent = new Intent(OfertaActivity.this, ListarTruequeActivity.class);
                     startActivity(intent);
                     finish();           }

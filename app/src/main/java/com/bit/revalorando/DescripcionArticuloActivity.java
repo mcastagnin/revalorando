@@ -173,6 +173,9 @@ Log.d("idAsr2 - idusu2, idArt1", ""+ articulo.getId()+"  "+articulo.getIdUsuario
             truequeViewModel.updateTruequeByTruequeId(articulo.getId(),articulo.getIdUsuario(), idTrueque);
             Toast.makeText(getApplicationContext(), "Se ha realizado la oferta.", Toast.LENGTH_LONG).show();
 
+            finish();
+            Intent intent = new Intent(DescripcionArticuloActivity.this, ListarTruequeActivity.class);
+            startActivity(intent);
 
 
             //Log.d("info articulo", articulo.getNombre());
