@@ -12,17 +12,7 @@ import androidx.fragment.app.DialogFragment;
 
 
 public class OptionsMenuActivity extends AppCompatActivity {
-/*
 
-    private GoogleSignInClient googleSignInClient;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
-        googleSignInClient = GoogleSignIn.getClient(this, gso);
-    }
-*/
 
 
     @Override
@@ -50,16 +40,7 @@ public class OptionsMenuActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-/*
-    private void logout(){
-        googleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Intent intent = new Intent(OptionsMenuActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
-    }*/
+
 
     private void acercaDe(){
         DialogFragment dialog = new AcercaDeDialogFragment();

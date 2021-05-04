@@ -124,100 +124,14 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
 
             @Override
             public void onItemDelete(Articulo articulo) {
-                /*
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
-                builder.setMessage(R.string.msg_borrar);
-                builder.setTitle(R.string.titulo_borrar);
 
-                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        articuloViewModel.delete(articulo);
-                        Toast.makeText(getApplicationContext(), R.string.eliminado_articulo, Toast.LENGTH_LONG).show();
-                    }
-                });
-                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();*/
 
             }
-/*
-            @Override
-            public void OnItemClick(Articulo articulo) {
 
-
-                    Intent respuesta = new Intent();
-                    if(TextUtils.isEmpty("")){
-                        setResult(RESULT_CANCELED, respuesta);
-                    } else {
-                        /*
-                        String articulo = editTextNombre.getText().toString();
-                        String descripcion = editTextDescripcion.getText().toString();
-                        String url = editTextImagen.getText().toString();
-                        respuesta.putExtra(EXTRA_MSG_NOMBRE, articulo);
-                        respuesta.putExtra(EXTRA_MSG_DESCRIPCION, descripcion);
-                        respuesta.putExtra(EXTRA_MSG_FOTO, url);
-
-                        int id = getIntent().getIntExtra(EXTRA_MSG_ARTICULO_ID, -1);
-                        if(id != -1){
-                            respuesta.putExtra(EXTRA_MSG_ARTICULO_ID, id);
-                        }
-                        setResult(RESULT_OK, respuesta);
-                    }
-                    Log.d("id art inter", EXTRA_MSG_ARTICULO_ID);
-                    finish();
-
-
-                Intent intent = new Intent(ListarSeleccionActivity.this, AgregarArticuloActivity.class);
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
-                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
-
-                startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
-            }*/
 
             @Override
             public void onItemPublicar(Articulo articulo) {
-                /*AlertDialog.Builder builder = new AlertDialog.Builder(ListarSeleccionActivity.this);
-                builder.setMessage("Desea publicar el artículo para ser intercambiado?");
-                builder.setTitle("Publicar el Artículo");
 
-                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Trueque trueque = new Trueque();
-                        trueque.setEstado("d");
-                        trueque.setIdArticulo1(articulo.getId());
-                        trueque.setIdUsuario1(idUsuario);
-                        trueque.setIdArticulo2(-1);
-                        trueque.setIdUsuario2(-1);
-                        truequeViewModel.insert(trueque);
-                        articulo.setEstado("n");
-                        articuloViewModel.update(articulo);
-
-
-                        //articuloViewModel.delete(articulo);
-                        Toast.makeText(getApplicationContext(), "Artículo publicado", Toast.LENGTH_LONG).show();
-                       // Toast.makeText(getApplicationContext(), "" + articulo.getId(), Toast.LENGTH_LONG).show();
-
-                    }
-                });
-                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), "Artículo no publicado", Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();*/
             }
         });
         
@@ -246,46 +160,7 @@ public class ListarSeleccionActivity extends OptionsMenuActivity implements Navi
 
 
     }
-/*
-    public void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==NEW_ARTICULO_REQ_CODE && resultCode == RESULT_OK){
-            Articulo articulo = new Articulo();
-            articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
-            articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
-            articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
-            articulo.setCategoria(1);
-            articulo.setEstado("d");
-
-
-            articulo.setIdUsuario(idUsuario);
-            articuloViewModel.insert(articulo);
-
-        } else if ( requestCode == UPDATE_ARTICULO_REQ_CODE && resultCode == RESULT_OK){
-            int id = data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID, -1);
-            if (id == -1 ){
-                Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
-            }
-
-
-            Articulo articulo = new Articulo();
-            articulo.setId(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_ID,-1));
-            articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
-            articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
-            articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
-            articulo.setIdUsuario(idUsuario);
-            articulo.setCategoria(1);
-            articulo.setEstado("d");
-
-            Log.d("info articulo", articulo.getNombre());
-            articuloViewModel.update(articulo);
-
-
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
-        }
-    }*/
 
 
 

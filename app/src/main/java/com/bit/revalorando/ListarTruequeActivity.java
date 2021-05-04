@@ -80,28 +80,7 @@ public class ListarTruequeActivity extends OptionsMenuActivity implements Naviga
         adapter.setOnItemClickListener(new ArticuloTruequeListAdapter.OnItemClickListener() {
             @Override
             public void onItemDelete(Articulo articulo) {
-                /*
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListarTruequeActivity.this);
-                builder.setMessage(R.string.msg_borrar);
-                builder.setTitle(R.string.titulo_borrar);
 
-                builder.setPositiveButton(R.string.si, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                       // articuloTruequeViewModel.delete(articulo);
-                        Toast.makeText(getApplicationContext(), R.string.eliminado_articulo, Toast.LENGTH_LONG).show();
-                    }
-                });
-                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getApplicationContext(), R.string.no_eliminado_articulo, Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-*/
             }
             @Override
             public void OnItemClick(Articulo articulo) {
