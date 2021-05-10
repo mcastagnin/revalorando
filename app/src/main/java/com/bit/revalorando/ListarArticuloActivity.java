@@ -101,12 +101,16 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             }
 
             @Override
-            public void OnItemClick(Articulo articulo) {
+            public void OnItemClick(Articulo art) {
                 Intent intent = new Intent(ListarArticuloActivity.this, AgregarArticuloActivity.class);
+                Articulo articulo = articuloViewModel.getArticulo(art.getId());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE, articulo.getNombre());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION, articulo.getDescripcion());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO, articulo.getFoto());
                 intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_ID, articulo.getId());
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_CATEGORIA, articulo.getCategoria());
+                //Log.d("Categ.:", articulo.getCategoria()+"");
+                intent.putExtra(AgregarArticuloActivity.EXTRA_MSG_CONDICION, articulo.getCondicion());
 
                 startActivityForResult(intent, UPDATE_ARTICULO_REQ_CODE);
             }
@@ -175,7 +179,8 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
             articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
             articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
-            articulo.setCategoria(1);
+            articulo.setCondicion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_CONDICION));
+            articulo.setCategoria(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_CATEGORIA, 1));
             articulo.setEstado("d");
 
             /*articulo.setCategoria(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_CATEGORIA,0));
@@ -196,8 +201,9 @@ public class ListarArticuloActivity extends OptionsMenuActivity implements Navig
             articulo.setNombre(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_NOMBRE));
             articulo.setDescripcion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_DESCRIPCION));
             articulo.setFoto(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_FOTO));
+            articulo.setCondicion(data.getStringExtra(AgregarArticuloActivity.EXTRA_MSG_CONDICION));
+            articulo.setCategoria(data.getIntExtra(AgregarArticuloActivity.EXTRA_MSG_CATEGORIA, 1));
             articulo.setIdUsuario(idUsuario);
-            articulo.setCategoria(1);
             articulo.setEstado("d");
 
             Log.d("info articulo", articulo.getNombre());

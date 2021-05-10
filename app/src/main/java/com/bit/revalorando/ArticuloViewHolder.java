@@ -25,7 +25,7 @@ public class ArticuloViewHolder  extends RecyclerView.ViewHolder {
 
     }
 
-    public void bind(String nombre, String descripcion, String url){
+    public void bind(String nombre, String descripcion, String url, int categoria, String condicion){
         nombreItemView.setText(nombre);
         descripcionItemView.setText(descripcion);
         Picasso.with(itemView.getContext())
@@ -33,6 +33,7 @@ public class ArticuloViewHolder  extends RecyclerView.ViewHolder {
                 .centerCrop()
                 .fit()
                 .into(imagenView);
+
     }
 
 

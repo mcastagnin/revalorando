@@ -30,7 +30,7 @@ public class ArticuloListAdapter extends ListAdapter<Articulo,ArticuloViewHolder
     @Override
     public void onBindViewHolder(@NonNull ArticuloViewHolder holder, int position) {
         Articulo articuloActual = getItem(position);
-        holder.bind(articuloActual.getNombre(), articuloActual.getDescripcion(), articuloActual.getFoto());/*, articuloActual.getPassword(), articuloActual.getNombre(), articuloActual.getApellido(), articuloActual.getEmail(), articuloActual.getTelefono(), articuloActual.getDireccion(), articuloActual.getNumero(), articuloActual.getLocalidad(), articuloActual.getDepartamento());*/
+        holder.bind(articuloActual.getNombre(), articuloActual.getDescripcion(), articuloActual.getFoto(), articuloActual.getCategoria(), articuloActual.getCondicion());/*, articuloActual.getPassword(), articuloActual.getNombre(), articuloActual.getApellido(), articuloActual.getEmail(), articuloActual.getTelefono(), articuloActual.getDireccion(), articuloActual.getNumero(), articuloActual.getLocalidad(), articuloActual.getDepartamento());*/
         //holder.bind(articuloActual.getNombre());
         //holder.bind(articuloActual.getArticulo());
 
@@ -70,7 +70,11 @@ public class ArticuloListAdapter extends ListAdapter<Articulo,ArticuloViewHolder
         public boolean areContentsTheSame(@NonNull Articulo oldItem, @NonNull Articulo newItem) {
             return oldItem.getNombre().equals(newItem.getNombre());
         }
+
+
     }
+
+
 
     public interface OnItemClickListener {
         void onItemDelete(Articulo articulo);

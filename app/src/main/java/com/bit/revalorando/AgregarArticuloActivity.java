@@ -7,6 +7,7 @@ import com.google.android.material.appbar.MaterialToolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,6 +23,8 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
     public static final String EXTRA_MSG_NOMBRE = "com.bit.revalorando.MSG_GUARDAR_NOMBRE";
     public static final String EXTRA_MSG_DESCRIPCION = "com.bit.revalorando.MSG_GUARDAR_DESCRIPCION";
     public static final String EXTRA_MSG_FOTO = "com.bit.revalorando.MSG_GUARDAR_FOTO";
+    public static final String EXTRA_MSG_CONDICION = "com.bit.revalorando.MSG_GUARDAR_CONDICION";
+    public static final String EXTRA_MSG_CATEGORIA = "com.bit.revalorando.MSG_GUARDAR_CATEGORIA";
 
     VariablesLogin vLogin = VariablesLogin.getInstance();
     public int idUsuario = vLogin.idUsuarioGlobal;
@@ -65,12 +68,21 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
                 String articulo = editTextNombre.getText().toString();
                 String descripcion = editTextDescripcion.getText().toString();
                 String url = editTextImagen.getText().toString();
+                String condicion = spinnerCondicion.getSelectedItem().toString();
+                if(condicion ==""){
+                    condicion = "Usado";
+                }
+                int categoria = (spinnerCategoria.getSelectedItemPosition())+1;
+
                 if(url.equals("")){
                     url = "https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png";
                 }
                 respuesta.putExtra(EXTRA_MSG_NOMBRE, articulo);
                 respuesta.putExtra(EXTRA_MSG_DESCRIPCION, descripcion);
                 respuesta.putExtra(EXTRA_MSG_FOTO, url);
+                respuesta.putExtra(EXTRA_MSG_CONDICION, condicion);
+                respuesta.putExtra(EXTRA_MSG_CATEGORIA, categoria);
+
 
                 int id = getIntent().getIntExtra(EXTRA_MSG_ID, -1);
                 if(id != -1){
@@ -92,8 +104,15 @@ public class AgregarArticuloActivity extends OptionsMenuActivity {
             else{
                 editTextImagen.setText(intent.getStringExtra(EXTRA_MSG_FOTO));
             }
-        } else {
-            //editTextImagen.setText("https://cdn.icon-icons.com/icons2/2534/PNG/128/product_delivery_icon_152013.png");
+            //String cat = ;
+            int cate = intent.getIntExtra(EXTRA_MSG_CATEGORIA,1)-1;
+            spinnerCategoria.setSelection(cate);
+            spinnerCondicion.setSelection(0);
+            //Log.d("condi:", intent.getStringExtra(EXTRA_MSG_CONDICION));
+            if((intent.getStringExtra(EXTRA_MSG_CONDICION)).equals("Nuevo")){
+                spinnerCondicion.setSelection(1);
+            }
+
         }
 
         MaterialToolbar toolbar = findViewById(R.id.toolbar);

@@ -20,6 +20,8 @@
         android:textSize="18sp" />
 
 
+
+
     <EditText
         android:id="@+id/textViewIngresarNombre"
         android:layout_width="match_parent"
@@ -67,6 +69,20 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"/>
 
+    <TextView
+        android:id="@+id/etiquetaCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione la categoría:"
+        android:textIsSelectable="false"
+        android:textSize="18sp"        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        />
     <Spinner
         android:id="@+id/spinnerIngresarCategoria"
         android:layout_width="match_parent"
@@ -81,6 +97,22 @@
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/etiquetaCondicion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Seleccione la condición:"
+        android:textIsSelectable="false"
+        android:textSize="18sp"
+        android:layout_margin="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        />
     <Spinner
         android:id="@+id/spinnerIngresarCondicion"
         android:layout_width="match_parent"
